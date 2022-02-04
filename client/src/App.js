@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import Header from './components/Header'
 import Masonry from './components/Masonry'
 
 export default function App () {
@@ -23,9 +24,12 @@ export default function App () {
 
   return (
     <div className='App'>
-      {albums.map((album, index) => (
-        <Masonry key={index} album={album} />
-      ))}
+      <Header />
+      <main>
+        {albums.map((album, index) => (
+          <Masonry key={index} album={album} />
+        ))}
+      </main>
     </div>
   )
 }
