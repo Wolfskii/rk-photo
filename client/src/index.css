@@ -1,13 +1,130 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face {
+  font-family: 'NeueHaasMedium';
+  src: local("NeueHaasMedium"), url(./fonts/NeueHaasDisplayMedium.ttf) format("truetype");
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@font-face {
+  font-family: 'NeueHaasRoman';
+  src: local("NeueHaasRoman"), url(./fonts/NeueHaasDisplayRoman.ttf) format("truetype");
 }
+
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: NeueHaasRoman, sans-serif;
+  background-color: #181818;
+  /* Charcoal black */
+  font-size: 16px;
+  color: #efefef;
+  /* Smoky white */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: NeueHaasMedium;
+}
+
+h1 span, h2 span, h3 span, h4 span, h5 span, h6 span {
+  color: #D11342;
+}
+
+h1::first-letter, h2::first-letter, h3::first-letter, h4::first-letter, h5::first-letter, h6::first-letter {
+  text-transform: capitalize;
+}
+
+h1 {
+  font-size: 3.2em;
+}
+
+h2 {
+  font-size: 2.8em;
+}
+
+h4 {
+  font-size: 2.4em;
+}
+
+h5 {
+  font-size: 2.0em;
+}
+
+h6 {
+  font-size: 1.6em;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* Masonry below */
+
+.masonry {
+	 columns: 4;
+	 column-gap: 16px;
+}
+ @media (max-width: 1200px) {
+	 .masonry {
+		 columns: 3;
+	}
+}
+ @media (max-width: 992px) {
+	 .masonry {
+		 columns: 2;
+	}
+}
+ .masonry .masonry-item {
+	 display: inline-block;
+	 margin-bottom: 16px;
+	 position: relative;
+}
+ .masonry .masonry-item:before {
+	 border-radius: 5px;
+	 content: '';
+	 position: absolute;
+	 top: 0;
+	 right: 0;
+	 bottom: 0;
+	 left: 0;
+	 background-color: rgba(0, 0, 0, .2);
+}
+ .masonry .masonry-item img {
+	 width: 100%;
+	 border-radius: 5px;
+}
+ .masonry .masonry-item__title {
+	 font-size: 28px;
+	 font-weight: bold;
+	 margin: 0px 0px 10px 0px;
+}
+ .masonry .masonry-item__author {
+	 font-size: 14px;
+	 font-weight: 300;
+}
+ .masonry .masonry-item__link {
+	 position: absolute;
+	 left: 0;
+	 right: 0;
+	 top: 0;
+	 bottom: 0;
+}
+ .masonry .masonry-item__body {
+	 position: absolute;
+	 left: 0;
+	 right: 0;
+	 top: 0;
+	 bottom: 0;
+	 padding: 30px 30px;
+	 color: #fff;
+	 display: flex;
+	 flex-direction: column;
+}
+ .masonry .masonry-item__tag {
+	 background-color: rgba(255, 255, 255, .8);
+	 color: #333;
+	 border-radius: 5px;
+	 padding: 5px 15px;
+	 margin-bottom: 5px;
+}
+ .mt-auto {
+	 margin-top: auto;
+}
+ 

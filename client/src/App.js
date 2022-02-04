@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from 'react'
+import Masonry from './components/Masonry'
 
-function App() {
+export default function App () {
+  const [albums, setAlbums] = useState([])
+
+  useEffect(() => {
+    const getAlbums = async () => {
+      const albumsFromServer = await fetchAlbums()
+      await setAlbums(albumsFromServer)
+    }
+
+    getAlbums()
+  }, [])
+
+  // Fetch Albums
+  const fetchAlbums = async () => {
+    const res = await fetch('http://localhost:3000/albums')
+    const data = await res.json()
+
+    return data.albums
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      {albums.map((album, index) => (
+        <Masonry key={index} album={album} />
+      ))}
     </div>
-  );
+  )
 }
-
-export default App;
