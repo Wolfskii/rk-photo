@@ -215,3 +215,12 @@ img {
     width: 100%;
   }
 }
+
+/* Album grid */
+
+.albums-listing {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr; /* fix: minimum width of 0 */
+  justify-content: space-between;
+  grid-gap: 1.5em;
+}
