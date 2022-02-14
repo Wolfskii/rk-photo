@@ -231,7 +231,7 @@ header img {
 
 /* Login-page */
 
-form {
+.login-page form {
   height: 520px;
   width: 400px;
   background-color: rgba(0, 0, 0, 0.9);
@@ -241,27 +241,28 @@ form {
   box-shadow: 0 0 40px rgba(8,7,16,0.6);
   padding: 50px 35px;
 }
-form * {
+.login-page form * {
   color: #ffffff;
   letter-spacing: 0.5px;
   outline: none;
   border: none;
 }
-form h3 {
+
+.login-page form h3 {
   font-size: 32px;
   font-weight: 500;
   line-height: 42px;
   text-align: center;
 }
 
-label {
+.login-page label {
   display: block;
   margin-top: 30px;
   font-size: 16px;
   font-weight: 500;
 }
 
-input {
+.login-page input {
   display: block;
   height: 50px;
   width: 100%;
@@ -273,11 +274,11 @@ input {
   font-weight: 300;
 }
 
-::placeholder {
+.login-page ::placeholder {
   color: #e5e5e5;
 }
 
-button {
+.login-page button {
   margin-top: 50px;
   width: 100%;
   background-color: #ffffff;
@@ -289,12 +290,12 @@ button {
   cursor: pointer;
 }
 
-.social {
+.login-page .social {
 margin-top: 30px;
 display: flex;
 }
 
-.social div {
+.login-page .social div {
 background: red;
 width: 150px;
 border-radius: 3px;
@@ -304,14 +305,204 @@ color: #eaf0fb;
 text-align: center;
 }
 
-.social div:hover {
+.login-page .social div:hover {
 background-color: rgba(255,255,255,0.47);
 }
 
-.social .fb {
+.login-page .social .fb {
 margin-left: 25px;
 }
 
-.social i {
+.login-page .social i {
 margin-right: 4px;
+}
+
+/* Dashboard */
+
+/* The side navigation menu */
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+/* Sidebar links */
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+
+/* Active/current link */
+.sidebar a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+/* Links on mouse-over */
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+/* div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+} */
+
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  /* div.content {margin-left: 0;} */
+}
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+
+/* Upload-form */
+
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
+
+ .uploader {
+	 display: block;
+	 clear: both;
+	 margin: 0 auto;
+	 width: 100%;
+	 max-width: 600px;
+}
+ .uploader label {
+	 float: left;
+	 clear: both;
+	 width: 100%;
+	 padding: 2rem 1.5rem;
+	 text-align: center;
+	 background: #fff;
+	 border-radius: 7px;
+	 border: 3px solid #eee;
+	 transition: all 0.2s ease;
+	 user-select: none;
+}
+ .uploader label:hover {
+	 border-color: #454cad;
+}
+ .uploader label.hover {
+	 border: 3px solid #454cad;
+	 box-shadow: inset 0 0 0 6px #eee;
+}
+ .uploader label.hover #start i.fa {
+	 transform: scale(0.8);
+	 opacity: 0.3;
+}
+ .uploader #start {
+	 float: left;
+	 clear: both;
+	 width: 100%;
+}
+ .uploader #start.hidden {
+	 display: none;
+}
+ .uploader #start i.fa {
+	 font-size: 50px;
+	 margin-bottom: 1rem;
+	 transition: all 0.2s ease-in-out;
+}
+ .uploader #response {
+	 float: left;
+	 clear: both;
+	 width: 100%;
+}
+ .uploader #response.hidden {
+	 display: none;
+}
+ .uploader #response #messages {
+	 margin-bottom: 0.5rem;
+}
+ .uploader #file-image {
+	 display: inline;
+	 margin: 0 auto 0.5rem auto;
+	 width: auto;
+	 height: auto;
+	 max-width: 180px;
+}
+ .uploader #file-image.hidden {
+	 display: none;
+}
+ .uploader #notimage {
+	 display: block;
+	 float: left;
+	 clear: both;
+	 width: 100%;
+}
+ .uploader #notimage.hidden {
+	 display: none;
+}
+ .uploader progress, .uploader .progress {
+	 display: inline;
+	 clear: both;
+	 margin: 0 auto;
+	 width: 100%;
+	 max-width: 180px;
+	 height: 8px;
+	 border: 0;
+	 border-radius: 4px;
+	 background-color: #eee;
+	 overflow: hidden;
+}
+ .uploader .progress[value]::-webkit-progress-bar {
+	 border-radius: 4px;
+	 background-color: #eee;
+}
+ .uploader .progress[value]::-webkit-progress-value {
+	 background: linear-gradient(to right, #393f90 0%, #454cad 50%);
+	 border-radius: 4px;
+}
+ .uploader .progress[value]::-moz-progress-bar {
+	 background: linear-gradient(to right, #393f90 0%, #454cad 50%);
+	 border-radius: 4px;
+}
+ .uploader input[type="file"] {
+	 display: none;
+}
+ .uploader div {
+	 margin: 0 0 0.5rem 0;
+	 color: #5f6982;
+}
+ .uploader .btn {
+	 display: inline-block;
+	 margin: 0.5rem 0.5rem 1rem 0.5rem;
+	 clear: both;
+	 font-family: inherit;
+	 font-weight: 700;
+	 font-size: 14px;
+	 text-decoration: none;
+	 text-transform: initial;
+	 border: none;
+	 border-radius: 0.2rem;
+	 outline: none;
+	 padding: 0 1rem;
+	 height: 36px;
+	 line-height: 36px;
+	 color: #fff;
+	 transition: all 0.2s ease-in-out;
+	 box-sizing: border-box;
+	 background: #454cad;
+	 border-color: #454cad;
+	 cursor: pointer;
 }
