@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/rk-photo/static/css/main.840ca8a5.css",
-    "main.js": "/rk-photo/static/js/main.924aa43f.js",
+    "main.js": "/rk-photo/static/js/main.ccf67bc3.js",
     "static/media/NeueHaasDisplayMedium.ttf": "/rk-photo/static/media/NeueHaasDisplayMedium.32921edb532f55cbfdc6.ttf",
     "static/media/NeueHaasDisplayRoman.ttf": "/rk-photo/static/media/NeueHaasDisplayRoman.a4c6f6d97398d8f9a96c.ttf",
     "index.html": "/rk-photo/index.html",
     "main.840ca8a5.css.map": "/rk-photo/static/css/main.840ca8a5.css.map",
-    "main.924aa43f.js.map": "/rk-photo/static/js/main.924aa43f.js.map"
+    "main.ccf67bc3.js.map": "/rk-photo/static/js/main.ccf67bc3.js.map"
   },
   "entrypoints": [
     "static/css/main.840ca8a5.css",
-    "static/js/main.924aa43f.js"
+    "static/js/main.ccf67bc3.js"
   ]
 }
