@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom'
 import UploadForm from './UploadForm'
 
 export default function Dashboard () {
+  // Use as inspiration: https://www.cssscript.com/demo/dashboard-tailwind-admin/
+
   return (
     <div id='dashboard'>
       {/* The sidebar */}

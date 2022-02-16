@@ -1,27 +1,29 @@
+import _axios from 'axios'
+import progressfy from 'axios-progressfy'
 import { useState, useEffect } from 'react'
+const axios = progressfy(_axios) // Adding progressify to axios
 
 export default function UploadForm () {
+  const [isUploading, setIsUploading] = useState(false)
+  const { images, setImages } = useState([])
+
   useEffect(() => {
     // File Upload
-    //
     function ekUpload () {
       function Init () {
-        console.log('Upload Initialised')
-
         const fileSelect = document.getElementById('file-upload')
         const fileDrag = document.getElementById('file-drag')
-        const submitButton = document.getElementById('submit-button')
 
-        fileSelect.addEventListener('change', fileSelectHandler, false)
+        fileSelect.addEventListener('change', async (e) => {
+          await fileSelectHandler(e)
+        }, false)
 
-        // Is XHR2 available?
-        const xhr = new XMLHttpRequest()
-        if (xhr.upload) {
-          // File Drop
-          fileDrag.addEventListener('dragover', fileDragHover, false)
-          fileDrag.addEventListener('dragleave', fileDragHover, false)
-          fileDrag.addEventListener('drop', fileSelectHandler, false)
-        }
+        // File Drop
+        fileDrag.addEventListener('dragover', fileDragHover, false)
+        fileDrag.addEventListener('dragleave', fileDragHover, false)
+        fileDrag.addEventListener('drop', async (e) => {
+          await fileSelectHandler(e)
+        }, false)
       }
 
       function fileDragHover (e) {
@@ -33,7 +35,7 @@ export default function UploadForm () {
         fileDrag.className = (e.type === 'dragover' ? 'hover' : 'modal-body file-upload')
       }
 
-      function fileSelectHandler (e) {
+      async function fileSelectHandler (e) {
         // Fetch FileList object
         const files = e.target.files || e.dataTransfer.files
 
@@ -42,9 +44,14 @@ export default function UploadForm () {
 
         // Process all File objects
         for (let i = 0; i < files.length; i++) {
-          const f = files[i]
-          parseFile(f)
-          uploadFile(f)
+          const file = files[i]
+          parseFile(file)
+
+          if (isSizeOkay(file)) {
+            await uploadImgToImgur(file)
+          } else {
+            output('Bild-storlek för stor!')
+          }
         }
       }
 
@@ -56,16 +63,14 @@ export default function UploadForm () {
       }
 
       function parseFile (file) {
-        console.log(file.name)
         output(
           '<strong>' + encodeURI(file.name) + '</strong>'
         )
 
-        // var fileType = file.type;
-        // console.log(fileType);
         const imageName = file.name
 
         const isGood = (/\.(?=gif|jpg|png|jpeg)/gi).test(imageName)
+
         if (isGood) {
           document.getElementById('start').classList.add('hidden')
           document.getElementById('response').classList.remove('hidden')
@@ -98,50 +103,59 @@ export default function UploadForm () {
         }
       }
 
-      function uploadFile (file) {
-        const xhr = new XMLHttpRequest()
-        const fileInput = document.getElementById('class-roster-file')
+      async function uploadImgToImgur (imgFile) {
+        let imgUrl = ''
+
         const pBar = document.getElementById('file-progress')
-        const fileSizeLimit = 1024 // In MB
-        if (xhr.upload) {
-          // Check if file is less than x MB
-          if (file.size <= fileSizeLimit * 1024 * 1024) {
-            // Progress bar
-            pBar.style.display = 'inline'
-            xhr.upload.addEventListener('loadstart', setProgressMaxValue, false)
-            xhr.upload.addEventListener('progress', updateFileProgress, false)
 
-            // File received / failed
-            xhr.onreadystatechange = function (e) {
-              if (xhr.readyState === 4) {
-                // Everything is good!
+        // Progress bar
+        pBar.style.display = 'inline'
 
-                // progress.className = (xhr.status == 200 ? "success" : "failure");
-                // document.location.reload(true);
-              }
-            }
-
-            // Start upload
-            xhr.open('POST', document.getElementById('file-upload-form').action, true)
-            xhr.setRequestHeader('X-File-Name', file.name)
-            xhr.setRequestHeader('X-File-Size', file.size)
-            xhr.setRequestHeader('Content-Type', 'multipart/form-data')
-            xhr.send(file)
-          } else {
-            output('Please upload a smaller file (< ' + fileSizeLimit + ' MB).')
+        // Start upload
+        const url = 'https://api.imgur.com/3/image'
+        const data = new FormData()
+        data.append('image', imgFile)
+        const config = {
+          headers: {
+            'Content-type': 'application/x-www-form-urlencoded',
+            Authorization: 'Client-ID ab4e03fd5059830'
           }
+        }
+        console.log(imgFile)
+        imgUrl = await axios.post(url, data, config).data
+        console.log(imgUrl)
+
+        return imgUrl
+      }
+
+      function isSizeOkay (file) {
+        const fileSizeLimit = 20 // In MB
+
+        if (file.size <= fileSizeLimit * 1024 * 1024) {
+          return true
+        } else {
+          return false
         }
       }
 
+      function browserHasFileSupport () {
       // Check for the various File API support.
-      if (window.File && window.FileList && window.FileReader) {
+        if (window.File && window.FileList && window.FileReader) {
+          return true
+        } else {
+          return false
+        }
+      }
+
+      if (browserHasFileSupport) {
         Init()
       } else {
         document.getElementById('file-drag').style.display = 'none'
       }
     }
+
     ekUpload()
-  }, [])
+  }, [isUploading])
 
   return (
     <div>

@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
+import Footer from './components/Footer'
 import Albums from './components/Albums'
 import Masonry from './components/Masonry'
 import Login from './components/Login'
@@ -18,6 +19,7 @@ export default function App () {
             <Route path='/dashboard' element={<Dashboard />} />
           </Routes>
         </main>
+        <Footer />
       </div>
     </BrowserRouter>
   )
