@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.77a8a59b.css",
-    "main.js": "/static/js/main.817a5627.js",
-    "static/media/NeueHaasDisplayMedium.ttf": "/static/media/NeueHaasDisplayMedium.32921edb532f55cbfdc6.ttf",
-    "static/media/NeueHaasDisplayRoman.ttf": "/static/media/NeueHaasDisplayRoman.a4c6f6d97398d8f9a96c.ttf",
-    "index.html": "/index.html",
-    "main.77a8a59b.css.map": "/static/css/main.77a8a59b.css.map",
-    "main.817a5627.js.map": "/static/js/main.817a5627.js.map"
+    "main.css": "/rk-photo/static/css/main.840ca8a5.css",
+    "main.js": "/rk-photo/static/js/main.817a5627.js",
+    "static/media/NeueHaasDisplayMedium.ttf": "/rk-photo/static/media/NeueHaasDisplayMedium.32921edb532f55cbfdc6.ttf",
+    "static/media/NeueHaasDisplayRoman.ttf": "/rk-photo/static/media/NeueHaasDisplayRoman.a4c6f6d97398d8f9a96c.ttf",
+    "index.html": "/rk-photo/index.html",
+    "main.840ca8a5.css.map": "/rk-photo/static/css/main.840ca8a5.css.map",
+    "main.817a5627.js.map": "/rk-photo/static/js/main.817a5627.js.map"
   },
   "entrypoints": [
-    "static/css/main.77a8a59b.css",
+    "static/css/main.840ca8a5.css",
     "static/js/main.817a5627.js"
   ]
 }
