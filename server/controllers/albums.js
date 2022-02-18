@@ -32,15 +32,17 @@ albums.create = async (req, res, next) => {
   const item = new Album({
     name: req.body.name,
     description: req.body.description,
-    imgUrl: req.body.imgUrl,
-    longitude: req.body.longitude,
-    latitude: req.body.latitude,
-    type: req.body.type,
-    authorId: req.body.authorId, // TODO: To take from user-token when logged in later
+    category: req.body.category,
+    coverImgUrl: req.body.coverImgUrl,
+    images: req.body.images,
+    // authorId: req.body.authorId, // TODO: To take from user-token when logged in later
     links: {}
   })
 
   try {
+    // Set datetime if provided in POST-request - Otherwise sets current automatically
+    if (req.body.datetime) { item.datetime = req.body.datetime }
+
     item.links = {
       self: `/api/albums/${item._id}`
       /* user: `/api/albums/${item.authorId}` TODO: add endpoint for all authors */

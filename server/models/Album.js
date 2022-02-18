@@ -11,6 +11,11 @@ const AlbumSchema = mongoose.Schema({
     required: true,
     unique: false
   },
+  category: {
+    type: String,
+    required: true,
+    unique: false
+  },
   datetime: {
     type: Date,
     required: true,
@@ -18,11 +23,6 @@ const AlbumSchema = mongoose.Schema({
     default: Date.now
   },
   coverImgUrl: {
-    type: String,
-    required: true,
-    unique: false
-  },
-  category: {
     type: String,
     required: true,
     unique: false
