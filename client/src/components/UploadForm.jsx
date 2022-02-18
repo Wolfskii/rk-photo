@@ -22,7 +22,6 @@ export default function UploadForm () {
     fileDrag.addEventListener('drop', async (e) => {
       const uploadedImages = await fileSelectHandler(e)
       await setImages(uploadedImages)
-      console.log(uploadedImages)
     }, false)
 
     // Saving of album
@@ -42,39 +41,39 @@ export default function UploadForm () {
   }
 
   // Testing one!!!
-  const fileSelectHandler = async (e) => {
+  /*   const fileSelectHandler = async (e) => {
     const uploadedImages = ['test1', 'test2', 'test3']
 
     // Cancel event and hover styling
     fileDragHover(e)
 
     return uploadedImages
+  } */
+
+  const fileSelectHandler = async (e) => {
+    const uploadedImages = []
+
+    // Fetch FileList object
+    const files = e.target.files || e.dataTransfer.files
+
+    // Cancel event and hover styling
+    fileDragHover(e)
+
+    // Process all File objects
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i]
+      parseFile(file)
+
+      if (isSizeOkay(file)) {
+        const imgUrl = await uploadImgToImgur(file)
+        uploadedImages.push(imgUrl)
+      } else {
+        output('Bild-storlek för stor!')
+      }
+    }
+
+    return uploadedImages
   }
-
-  /*         const fileSelectHandler = async (e) => {
-        const uploadedImages = []
-
-        // Fetch FileList object
-        const files = e.target.files || e.dataTransfer.files
-
-        // Cancel event and hover styling
-        fileDragHover(e)
-
-        // Process all File objects
-        for (let i = 0; i < files.length; i++) {
-          const file = files[i]
-          parseFile(file)
-
-          if (isSizeOkay(file)) {
-            const imgUrl = await uploadImgToImgur(file)
-            uploadedImages.push(imgUrl)
-          } else {
-            output('Bild-storlek för stor!')
-          }
-        }
-
-        return uploadedImages
-      } */
 
   // Output
   const output = (msg) => {
@@ -159,48 +158,55 @@ export default function UploadForm () {
     }
   }
 
-  const getAlbumFormData = () => {
+  const getAlbumFormData = async () => {
     const album = {
       name: document.getElementById('album-name').value,
       description: document.getElementById('album-desc').value,
       category: document.getElementById('album-cat').value,
-      images: images
+      images: []
     }
+
+    // Adding images to the array
+    images.forEach(image => {
+      album.images.push(image)
+    })
 
     const datetime = document.getElementById('album-date').value
 
     if (datetime !== '') {
       album.datetime = datetime
-      // TODO: To datetime-format
     }
 
     return album
   }
 
   const saveAlbumOnline = async (album) => {
-    // Start upload
-    const url = 'http://localhost:3000/albums'
+    // TODO: Fix bug, sends two time otherwise (first time without images)
+    if (album.images.length > 0) {
+      // Start upload
+      const url = 'http://localhost:3000/albums'
 
-    const data = {
-      name: album.name,
-      description: album.description,
-      category: album.category,
-      coverImgUrl: 'https://www.kamerabild.se/sites/kamerabild.se/files/styles/article_image/public/field/image/skarmavbild_2019-06-10_kl._08.25.30.png?itok=pPkJz20Q',
-      images: album.images
+      const data = {
+        name: album.name,
+        description: album.description,
+        category: album.category,
+        coverImgUrl: 'https://www.kamerabild.se/sites/kamerabild.se/files/styles/article_image/public/field/image/skarmavbild_2019-06-10_kl._08.25.30.png?itok=pPkJz20Q',
+        images: album.images
+      }
+
+      // Since datetime isn't obligatory and can be set automatically by API
+      if (album.datetime) {
+        data.datetime = album.datetime
+      }
+
+      const res = await axios.post(url, data)
     }
-
-    // Since datetime isn't obligatory and can be set automatically by API
-    if (album.datetime) {
-      data.datetime = album.datetime
-    }
-
-    const res = await axios.post(url, data)
   }
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault()
-    const album = getAlbumFormData()
-    saveAlbumOnline(album)
+    const album = await getAlbumFormData()
+    await saveAlbumOnline(album)
   }
 
   return (
