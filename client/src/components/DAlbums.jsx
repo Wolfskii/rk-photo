@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import Thumb from './AlbumThumb'
 
-export default function Albums () {
+export default function DAlbums () {
   const [albums, setAlbums] = useState([])
 
   useEffect(() => {

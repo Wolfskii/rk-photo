@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
-import Thumb from './AlbumThumb'
 
-export default function Albums () {
+export default function DPanel () {
   const [albums, setAlbums] = useState([])
 
   useEffect(() => {
@@ -22,10 +21,9 @@ export default function Albums () {
   }
 
   return (
-    <div className='albums-listing container'>
-      {albums.map((album, index) => (
-        <Thumb key={index} album={album} />
-      ))}
+    <div className='dashboard-panel'>
+      <h4>Antal album:</h4>
+      <p>{albums.length}</p>
     </div>
   )
 }

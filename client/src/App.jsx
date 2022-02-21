@@ -16,7 +16,7 @@ export default function App () {
             <Route exact path='/' element={<Albums />} />
             <Route path='/album/:id' element={<Masonry />} />
             <Route path='/portal' element={<Login />} />
-            <Route path='/dashboard' element={<Dashboard />} />
+            <Route path='/dashboard/*' element={<Dashboard />} />
           </Routes>
         </main>
         <Footer />
