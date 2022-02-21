@@ -5,7 +5,7 @@ const cors = require('cors')
 require('dotenv').config() // For setting up env variables in .env-file
 const rateLimit = require('express-rate-limit')
 const helmet = require('helmet')
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 4000
 
 // RATE LIMITING
 const limiter = rateLimit({

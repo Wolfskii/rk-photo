@@ -184,7 +184,7 @@ export default function UploadForm () {
     // TODO: Fix bug, sends two time otherwise (first time without images)
     if (album.images.length > 0) {
       // Start upload
-      const url = 'http://localhost:3000/albums'
+      const url = 'http://localhost:4000/albums'
 
       const data = {
         name: album.name,
