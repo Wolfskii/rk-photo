@@ -3,6 +3,7 @@ import { FaPen, FaTrash } from 'react-icons/fa'
 
 export default function Masonry () {
   const [editModeOn, setEditModeOn] = useState(false)
+  const [deleteModeOn, setDeleteModeOn] = useState(false)
   const [album, setAlbum] = useState({
     name: '',
     description: '',
@@ -32,10 +33,22 @@ export default function Masonry () {
 
   return (
     <div id='edit-album'>
-      <FaPen color='black' fontSize='1.8em' onClick={() => { setEditModeOn(!editModeOn) }} />
-      <FaTrash color='black' fontSize='1.8em' />
+      <FaPen
+        color='black' fontSize='1.8em' onClick={() => {
+          setEditModeOn(!editModeOn)
+        }}
+      />
+      <FaTrash
+        color='black' fontSize='1.8em' onClick={() => {
+          setEditModeOn(false)
+          setDeleteModeOn(!deleteModeOn)
+        }}
+      />
 
-      {editModeOn ? <EditableForm album={album} /> : <UnEditableForm album={album} />}
+      <form id='edit-form'>
+        {editModeOn ? <EditableForm album={album} /> : <UnEditableForm album={album} />}
+        {(deleteModeOn && !editModeOn) ? <DeleteButton album={album} /> : ''}
+      </form>
 
     </div>
   )
@@ -43,8 +56,7 @@ export default function Masonry () {
 
 function UnEditableForm ({ album }) {
   return (
-
-    <form id='edit-form'>
+    <>
       <label htmlFor='album-name'>Album-namn:</label>
       <input type='text' id='album-name' name='album-name' defaultValue={album.name} disabled />
 
@@ -56,14 +68,13 @@ function UnEditableForm ({ album }) {
 
       <label htmlFor='album-date'>Datum:</label>
       <input type='date' id='album-date' name='album-date' defaultValue={album.datetime} disabled />
-    </form>
+    </>
   )
 }
 
 function EditableForm ({ album }) {
   return (
-
-    <form id='edit-form'>
+    <>
       <label htmlFor='album-name'>Album-namn:</label>
       <input type='text' id='album-name' name='album-name' defaultValue={album.name} />
 
@@ -77,9 +88,13 @@ function EditableForm ({ album }) {
       <input type='date' id='album-date' name='album-date' defaultValue={album.datetime} />
 
       <input id='submit-album-btn' type='submit' value='Uppdatera' />
-    </form>
+    </>
 
   )
+}
+
+function DeleteButton ({ album }) {
+  return <input id='delete-album-btn' type='submit' value='Ta bort' />
 }
 
 const formatToInputDate = (isoDateTime) => {
