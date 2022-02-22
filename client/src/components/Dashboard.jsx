@@ -3,6 +3,7 @@ import DPanel from './DPanel'
 import DAlbums from './DAlbums'
 import UploadForm from './UploadForm'
 import DUser from './DUser'
+import DAlbumItem from './DAlbumItem'
 
 export default function Dashboard () {
   // Use as inspiration: https://www.cssscript.com/demo/dashboard-tailwind-admin/
@@ -25,6 +26,7 @@ export default function Dashboard () {
           <Route exact path='/album' element={<DAlbums />} />
           <Route path='/album/nytt' element={<UploadForm />} />
           <Route path='/profil' element={<DUser />} />
+          <Route path='/album/:id' element={<DAlbumItem />} />
         </Routes>
       </div>
 

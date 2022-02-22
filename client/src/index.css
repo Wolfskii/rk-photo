@@ -570,3 +570,7 @@ input[type=submit] {
 	 border-color: #454cad;
 	 cursor: pointer;
 }
+
+#edit-form {
+  margin-left: 500px;
+}

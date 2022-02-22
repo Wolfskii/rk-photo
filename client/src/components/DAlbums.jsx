@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import Thumb from './AlbumThumb'
+import DThumb from './DAlbumThumb'
 
 export default function DAlbums () {
   const [albums, setAlbums] = useState([])
@@ -24,7 +24,7 @@ export default function DAlbums () {
   return (
     <div className='albums-listing container'>
       {albums.map((album, index) => (
-        <Thumb key={index} album={album} />
+        <DThumb key={index} album={album} />
       ))}
     </div>
   )
