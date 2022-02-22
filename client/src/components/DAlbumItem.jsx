@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
+import { FaPen, FaTrash } from 'react-icons/fa'
 
 export default function Masonry () {
+  const [editModeOn, setEditModeOn] = useState(false)
   const [album, setAlbum] = useState({
     name: '',
     description: '',
@@ -9,14 +11,6 @@ export default function Masonry () {
     datetime: '',
     images: []
   })
-
-  const formatToInputDate = (isoDateTime) => {
-    const date = new Date(isoDateTime)
-    let monthNumber = (date.getMonth() + 1).toString()
-    if (monthNumber.length < 2) { monthNumber = '0' + monthNumber }
-
-    return date.getFullYear() + '-' + monthNumber + '-' + date.getDate()
-  }
 
   useEffect(() => {
     const getAlbum = async (albumId) => {
@@ -37,22 +31,63 @@ export default function Masonry () {
   }, [])
 
   return (
+    <div id='edit-album'>
+      <FaPen color='black' fontSize='1.8em' onClick={() => { setEditModeOn(!editModeOn) }} />
+      <FaTrash color='black' fontSize='1.8em' />
+
+      {editModeOn ? <EditableForm album={album} /> : <UnEditableForm album={album} />}
+
+    </div>
+  )
+}
+
+function UnEditableForm ({ album }) {
+  return (
+
     <form id='edit-form'>
       <label htmlFor='album-name'>Album-namn:</label>
-      <input type='text' id='album-name' name='album-name' value={album.name} />
+      <input type='text' id='album-name' name='album-name' defaultValue={album.name} disabled />
 
       <label htmlFor='album-desc'>Beskrivning:</label>
-      <textarea id='album-desc' name='album-desc' rows='10' cols='30' value={album.description} />
+      <textarea id='album-desc' name='album-desc' rows='10' cols='30' defaultValue={album.description} disabled />
 
       <label htmlFor='album-cat'>Kategori:</label>
-      <input type='text' id='album-cat' name='album-cat' value={album.category} />
+      <input type='text' id='album-cat' name='album-cat' defaultValue={album.category} disabled />
 
       <label htmlFor='album-date'>Datum:</label>
-      <input type='date' id='album-date' name='album-date' value={album.datetime} />
+      <input type='date' id='album-date' name='album-date' defaultValue={album.datetime} disabled />
+    </form>
+  )
+}
+
+function EditableForm ({ album }) {
+  return (
+
+    <form id='edit-form'>
+      <label htmlFor='album-name'>Album-namn:</label>
+      <input type='text' id='album-name' name='album-name' defaultValue={album.name} />
+
+      <label htmlFor='album-desc'>Beskrivning:</label>
+      <textarea id='album-desc' name='album-desc' rows='10' cols='30' defaultValue={album.description} />
+
+      <label htmlFor='album-cat'>Kategori:</label>
+      <input type='text' id='album-cat' name='album-cat' defaultValue={album.category} />
+
+      <label htmlFor='album-date'>Datum:</label>
+      <input type='date' id='album-date' name='album-date' defaultValue={album.datetime} />
 
       <input id='submit-album-btn' type='submit' value='Uppdatera' />
     </form>
+
   )
+}
+
+const formatToInputDate = (isoDateTime) => {
+  const date = new Date(isoDateTime)
+  let monthNumber = (date.getMonth() + 1).toString()
+  if (monthNumber.length < 2) { monthNumber = '0' + monthNumber }
+
+  return date.getFullYear() + '-' + monthNumber + '-' + date.getDate()
 }
 
 const getCurrAlbumId = () => {
