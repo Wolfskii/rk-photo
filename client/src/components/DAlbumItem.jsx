@@ -16,17 +16,16 @@ export default function DAlbumItem () {
 
   useEffect(() => {
     const getAlbum = async (albumId) => {
-      const url = `http://localhost:4000/albums/${albumId}`
-
-      const res = await axios.get(url)
+      const res = await fetch(`http://localhost:4000/albums/${albumId}`)
+      const data = await res.json()
 
       await setAlbum({
-        name: res.name,
-        description: res.description,
-        category: res.category,
-        coverImgUrl: res.coverImgUrl,
-        datetime: formatToInputDate(res.datetime),
-        images: res.images
+        name: data.name,
+        description: data.description,
+        category: data.category,
+        coverImgUrl: data.coverImgUrl,
+        datetime: formatToInputDate(data.datetime),
+        images: data.images
       })
     }
 
