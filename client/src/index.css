@@ -574,3 +574,7 @@ input[type=submit] {
 #edit-album {
   margin-left: 300px;
 }
+
+#delete-btn {
+  background-color: red;
+}

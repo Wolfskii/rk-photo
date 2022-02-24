@@ -63,10 +63,10 @@ albums.updateById = async (req, res, next) => {
       $set: {
         name: req.body.name,
         description: req.body.description,
-        imgUrl: req.body.imgUrl,
-        longitude: req.body.longitude,
-        latitude: req.body.latitude,
-        type: req.body.type
+        category: req.body.category,
+        coverImgUrl: req.body.coverImgUrl,
+        images: req.body.images,
+        datetime: req.body.datetime
       }
     })
 

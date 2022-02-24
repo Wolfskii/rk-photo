@@ -1,7 +1,10 @@
+import _axios from 'axios'
+import progressfy from 'axios-progressfy' // Adding progressify to axios
 import { useState, useEffect } from 'react'
 import { FaPen, FaTrash } from 'react-icons/fa'
+const axios = progressfy(_axios)
 
-export default function Masonry () {
+export default function DAlbumItem () {
   const [editModeOn, setEditModeOn] = useState(false)
   const [deleteModeOn, setDeleteModeOn] = useState(false)
   const [album, setAlbum] = useState({
@@ -40,14 +43,18 @@ export default function Masonry () {
       />
       <FaTrash
         color='black' fontSize='1.8em' onClick={() => {
-          setEditModeOn(false)
-          setDeleteModeOn(!deleteModeOn)
+          if (editModeOn) {
+            setEditModeOn(false)
+            setDeleteModeOn(deleteModeOn)
+          } else {
+            setDeleteModeOn(!deleteModeOn)
+          }
         }}
       />
 
       <form id='edit-form'>
         {editModeOn ? <EditableForm album={album} /> : <UnEditableForm album={album} />}
-        {(deleteModeOn && !editModeOn) ? <DeleteButton album={album} /> : ''}
+        {deleteModeOn ? <DeleteButton album={album} /> : ''}
       </form>
 
     </div>
@@ -87,14 +94,76 @@ function EditableForm ({ album }) {
       <label htmlFor='album-date'>Datum:</label>
       <input type='date' id='album-date' name='album-date' defaultValue={album.datetime} />
 
-      <input id='submit-album-btn' type='submit' value='Uppdatera' />
+      <input id='submit-btn' type='submit' value='Uppdatera' onClick={handleUpdateBtn(album)} />
     </>
 
   )
 }
 
 function DeleteButton ({ album }) {
-  return <input id='delete-album-btn' type='submit' value='Ta bort' />
+  return <input id='delete-btn' type='submit' value='Ta bort' onClick={handleDeleteBtn} />
+}
+
+const handleUpdateBtn = (albumInState) => (event) => {
+  removeDefaultBehaviours(event)
+
+  const changedAlbum = getCurrAlbumFormData(albumInState)
+  updateAlbum(changedAlbum)
+  // TODO: If succesful -->
+  window.history.back()
+}
+
+const handleDeleteBtn = () => (event) => {
+  removeDefaultBehaviours(event)
+
+  const albumId = getCurrAlbumId()
+  deleteAlbum(albumId)
+}
+
+const updateAlbum = async (album) => {
+  const url = `http://localhost:4000/albums/${album.id}`
+
+  const data = {
+    name: album.name,
+    description: album.description,
+    category: album.category,
+    coverImgUrl: album.coverImgUrl,
+    images: album.images,
+    datetime: album.datetime
+  }
+
+  const res = await axios.put(url, data)
+  console.log(res)
+
+  return res
+}
+
+const deleteAlbum = (id) => {
+  const url = `http://localhost:4000/albums/${id}`
+
+  const res = axios.delete(url)
+  console.log(res)
+
+  return res
+}
+
+const getCurrAlbumFormData = (albumInState) => {
+  const album = {
+    id: getCurrAlbumId(),
+    name: document.getElementById('album-name').value,
+    description: document.getElementById('album-desc').value,
+    category: document.getElementById('album-cat').value,
+    coverImgUrl: albumInState.coverImgUrl, // TODO: Add both these dynamically too!
+    images: albumInState.images, // TODO: Add both these dynamically too!
+    datetime: document.getElementById('album-date').value
+  }
+
+  return album
+}
+
+const removeDefaultBehaviours = (event) => {
+  event.stopPropagation()
+  event.preventDefault()
 }
 
 const formatToInputDate = (isoDateTime) => {
