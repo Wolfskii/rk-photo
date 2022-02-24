@@ -1,8 +1,6 @@
-import _axios from 'axios'
-import progressfy from 'axios-progressfy' // Adding progressify to axios
+import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { FaPen, FaTrash } from 'react-icons/fa'
-const axios = progressfy(_axios)
 
 export default function DAlbumItem () {
   const [editModeOn, setEditModeOn] = useState(false)
@@ -18,16 +16,17 @@ export default function DAlbumItem () {
 
   useEffect(() => {
     const getAlbum = async (albumId) => {
-      const res = await fetch(`http://localhost:4000/albums/${albumId}`)
-      const data = await res.json()
+      const url = `http://localhost:4000/albums/${albumId}`
+
+      const res = await axios.get(url)
 
       await setAlbum({
-        name: data.name,
-        description: data.description,
-        category: data.category,
-        coverImgUrl: data.coverImgUrl,
-        datetime: formatToInputDate(data.datetime),
-        images: data.images
+        name: res.name,
+        description: res.description,
+        category: res.category,
+        coverImgUrl: res.coverImgUrl,
+        datetime: formatToInputDate(res.datetime),
+        images: res.images
       })
     }
 
@@ -101,7 +100,7 @@ function EditableForm ({ album }) {
 }
 
 function DeleteButton ({ album }) {
-  return <input id='delete-btn' type='submit' value='Ta bort' onClick={handleDeleteBtn} />
+  return <input id='delete-btn' type='submit' value='Ta bort' onClick={handleDeleteBtn()} />
 }
 
 const handleUpdateBtn = (albumInState) => (event) => {
@@ -110,7 +109,7 @@ const handleUpdateBtn = (albumInState) => (event) => {
   const changedAlbum = getCurrAlbumFormData(albumInState)
   updateAlbum(changedAlbum)
   // TODO: If succesful -->
-  window.history.back()
+  window.history.back() // TODO: Fixa update av state på sida istället + meddelande vid success/fel
 }
 
 const handleDeleteBtn = () => (event) => {
@@ -118,6 +117,10 @@ const handleDeleteBtn = () => (event) => {
 
   const albumId = getCurrAlbumId()
   deleteAlbum(albumId)
+  // TODO: If succesful -->
+
+  // TODO: Fixa update av state på album-sida + meddelande vid success/fel
+  window.history.back()
 }
 
 const updateAlbum = async (album) => {
@@ -138,12 +141,12 @@ const updateAlbum = async (album) => {
   return res
 }
 
-const deleteAlbum = (id) => {
+const deleteAlbum = async (id) => {
   const url = `http://localhost:4000/albums/${id}`
 
-  const res = axios.delete(url)
-  console.log(res)
+  const res = await axios.delete(url)
 
+  console.log(res)
   return res
 }
 
