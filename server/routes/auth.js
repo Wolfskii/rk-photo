@@ -6,6 +6,7 @@ const verify = require('../controllers/middleware/verifyToken')
 router.get('/', controller.readEntry)
 router.get('/login', controller.readLogin)
 router.post('/login', controller.login)
+router.post('/register', controller.register)
 router.get('/:id', verify, controller.readById)
 router.put('/:id', verify, controller.updateById)
 

@@ -59,6 +59,40 @@ auth.login = async (req, res, next) => {
   }
 }
 
+auth.register = async (req, res, next) => {
+  // Check if user already exists
+  const emailExist = await User.findOne({ email: req.body.email })
+  if (emailExist) {
+    return res.status(400).send('Email already exists')
+  }
+
+  // Salting and hashing of the password
+  const salt = await bcrypt.genSalt(10)
+  const hashedPassword = await bcrypt.hash(req.body.password, salt)
+
+  // Create a new user
+  const user = new User({
+    name: req.body.name,
+    email: req.body.email,
+    password: hashedPassword
+  })
+  try {
+    // Adding HATEOAS-linkings
+    user.links = {
+      self: `/api/users/${user._shortId}`
+    }
+    await user.save()
+    res.status(201).json({
+      message: 'User created succesfully',
+      name: user.name,
+      email: user.email,
+      _shortId: user._shortId
+    })
+  } catch (err) {
+    res.status(400).send(err)
+  }
+}
+
 auth.readById = async (req, res, next) => {
   try {
     if (req.user._id === req.params.userId) {
