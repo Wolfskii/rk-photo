@@ -41,6 +41,7 @@ db.once('open', async () => {
 
 // ROUTES
 app.use('/albums', require('./routes/albums'))
+app.use('/auth', require('./routes/auth'))
 
 // CATCH 404 - NOT FOUND
 app.use((req, res, next) => {

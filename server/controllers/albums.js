@@ -35,7 +35,8 @@ albums.create = async (req, res, next) => {
     category: req.body.category,
     coverImgUrl: req.body.coverImgUrl,
     images: req.body.images,
-    // authorId: req.body.authorId, // TODO: To take from user-token when logged in later
+    user: req.user.name,
+    userId: req.user._id,
     links: {}
   })
 
