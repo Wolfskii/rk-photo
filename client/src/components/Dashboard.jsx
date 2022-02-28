@@ -1,4 +1,6 @@
 import { Routes, Route, NavLink } from 'react-router-dom'
+import useToken from '../hooks/useToken'
+import Login from './Login'
 import DPanel from './DPanel'
 import DAlbums from './DAlbums'
 import UploadForm from './UploadForm'
@@ -7,6 +9,11 @@ import DAlbumItem from './DAlbumItem'
 
 export default function Dashboard () {
   // Use as inspiration: https://www.cssscript.com/demo/dashboard-tailwind-admin/
+  const { token, setToken } = useToken()
+
+  if (!token) {
+    return <Login setToken={setToken} />
+  }
 
   return (
     <div id='dashboard'>

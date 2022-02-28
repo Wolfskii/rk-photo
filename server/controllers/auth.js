@@ -35,6 +35,7 @@ auth.login = async (req, res, next) => {
 
     // Check if user exists
     const user = await User.findOne({ email: req.body.email })
+
     if (!user) {
       return res.status(400).send('Email or password is wrong') // Outputs both email and password as wrong so they can't guess!
     }
@@ -46,10 +47,10 @@ auth.login = async (req, res, next) => {
     }
 
     // Create and give token - Expiry of 1 hour
-    const token = jwt.sign({ _id: user._id, name: user.name, email: user.email }, process.env.TOKEN_SECRET, { expiresIn: 60 * 60 })
+    const token = jwt.sign({ _id: user._id.toString(), name: user.name, email: user.email }, process.env.TOKEN_SECRET, { expiresIn: 60 * 60 })
     res.header('auth-token', token)
     res.header('expires', 3600)
-    res.status(303).json({
+    res.json({
       authToken: token,
       expiresIn: 3600,
       links: { self: { href: '', method: 'POST', desc: 'Login user', params: '{email}, {password}' } }
@@ -79,14 +80,14 @@ auth.register = async (req, res, next) => {
   try {
     // Adding HATEOAS-linkings
     user.links = {
-      self: `/api/users/${user._shortId}`
+      self: `/api/users/${user._id}`
     }
     await user.save()
     res.status(201).json({
       message: 'User created succesfully',
       name: user.name,
       email: user.email,
-      _shortId: user._shortId
+      _id: user._id
     })
   } catch (err) {
     res.status(400).send(err)
@@ -96,7 +97,7 @@ auth.register = async (req, res, next) => {
 auth.readById = async (req, res, next) => {
   try {
     if (req.user._id === req.params.userId) {
-      const user = await User.findOne({ _id: req.params.userId })
+      const user = await User.findOne({ _id: req.params.userId }) // TODO: Fix so using _id works on all places!
       res.json(user)
     } else {
       res.status(401).send('Access denied, you can only see your own user data!')
