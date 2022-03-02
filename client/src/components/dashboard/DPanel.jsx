@@ -1,7 +1,8 @@
+import AlbumsTable from './AlbumsTable'
+import StatBox from './StatBox'
 import { useState, useEffect } from 'react'
-import DThumb from './DAlbumThumb'
 
-export default function DAlbums () {
+export default function DPanel () {
   const [albums, setAlbums] = useState([])
 
   useEffect(() => {
@@ -22,10 +23,15 @@ export default function DAlbums () {
   }
 
   return (
-    <div className='albums-listing container'>
-      {albums.map((album, index) => (
-        <DThumb key={index} album={album} />
-      ))}
-    </div>
+    <>
+      <div className='dashboard-panel'>
+        <StatBox title='Album:' data={albums.length} />
+        <StatBox title='Foton:' data={albums.length} />
+        <StatBox title='Kategorier:' data={albums.length} />
+        <StatBox title='Antal album' data={albums.length} />
+
+        <AlbumsTable albums={albums} />
+      </div>
+    </>
   )
 }

@@ -3,7 +3,7 @@ import progressfy from 'axios-progressfy'
 import { useState, useEffect } from 'react'
 const axios = progressfy(_axios) // Adding progressify to axios
 
-export default function UploadForm () {
+export default function UploadForm ({ token }) {
   // const [isUploading, setIsUploading] = useState(false)
   const [images, setImages] = useState([])
 
@@ -199,7 +199,15 @@ export default function UploadForm () {
         data.datetime = album.datetime
       }
 
-      const res = await axios.post(url, data)
+      const config = {
+        headers: {
+          'auth-token': token
+        }
+      }
+
+      const res = await axios.post(url, data, config)
+
+      console.log(res)
     }
   }
 

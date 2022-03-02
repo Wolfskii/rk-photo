@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { FaPen, FaTrash } from 'react-icons/fa'
 
-export default function DAlbumItem () {
+export default function DAlbumItem ({ token }) {
   const [editModeOn, setEditModeOn] = useState(false)
   const [deleteModeOn, setDeleteModeOn] = useState(false)
   const [album, setAlbum] = useState({
@@ -13,6 +13,8 @@ export default function DAlbumItem () {
     datetime: '',
     images: []
   })
+
+  // auth-token
 
   useEffect(() => {
     const getAlbum = async (albumId) => {
@@ -51,8 +53,8 @@ export default function DAlbumItem () {
       />
 
       <form id='edit-form'>
-        {editModeOn ? <EditableForm album={album} /> : <UnEditableForm album={album} />}
-        {deleteModeOn ? <DeleteButton album={album} /> : ''}
+        {editModeOn ? <EditableForm album={album} token={token} /> : <UnEditableForm album={album} />}
+        {deleteModeOn ? <DeleteButton album={album} token={token} /> : ''}
       </form>
 
     </div>
@@ -77,7 +79,7 @@ function UnEditableForm ({ album }) {
   )
 }
 
-function EditableForm ({ album }) {
+function EditableForm ({ album, token }) {
   return (
     <>
       <label htmlFor='album-name'>Album-namn:</label>
@@ -92,37 +94,37 @@ function EditableForm ({ album }) {
       <label htmlFor='album-date'>Datum:</label>
       <input type='date' id='album-date' name='album-date' defaultValue={album.datetime} />
 
-      <input id='submit-btn' type='submit' value='Uppdatera' onClick={handleUpdateBtn(album)} />
+      <input id='submit-btn' type='submit' value='Uppdatera' onClick={handleUpdateBtn(album, token)} />
     </>
 
   )
 }
 
-function DeleteButton ({ album }) {
-  return <input id='delete-btn' type='submit' value='Ta bort' onClick={handleDeleteBtn()} />
+function DeleteButton ({ album, token }) {
+  return <input id='delete-btn' type='submit' value='Ta bort' onClick={handleDeleteBtn(token)} />
 }
 
-const handleUpdateBtn = (albumInState) => (event) => {
+const handleUpdateBtn = (albumInState, token) => (event) => {
   removeDefaultBehaviours(event)
 
   const changedAlbum = getCurrAlbumFormData(albumInState)
-  updateAlbum(changedAlbum)
+  updateAlbum(changedAlbum, token)
   // TODO: If succesful -->
   window.history.back() // TODO: Fixa update av state på sida istället + meddelande vid success/fel
 }
 
-const handleDeleteBtn = () => (event) => {
+const handleDeleteBtn = (token) => (event) => {
   removeDefaultBehaviours(event)
 
   const albumId = getCurrAlbumId()
-  deleteAlbum(albumId)
+  deleteAlbum(albumId, token)
   // TODO: If succesful -->
 
   // TODO: Fixa update av state på album-sida + meddelande vid success/fel
   window.history.back()
 }
 
-const updateAlbum = async (album) => {
+const updateAlbum = async (album, token) => {
   const url = `http://localhost:4000/albums/${album.id}`
 
   const data = {
@@ -134,16 +136,29 @@ const updateAlbum = async (album) => {
     datetime: album.datetime
   }
 
-  const res = await axios.put(url, data)
-  console.log(res)
+  const config = {
+    headers: {
+      'auth-token': token
+    }
+  }
+
+  console.log(token)
+
+  const res = await axios.put(url, data, config)
 
   return res
 }
 
-const deleteAlbum = async (id) => {
+const deleteAlbum = async (id, token) => {
   const url = `http://localhost:4000/albums/${id}`
 
-  const res = await axios.delete(url)
+  const config = {
+    headers: {
+      'auth-token': token
+    }
+  }
+
+  const res = await axios.delete(url, config)
 
   console.log(res)
   return res

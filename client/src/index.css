@@ -10,7 +10,7 @@
 
 body, html {
   margin: 0;
-  padding: 1rem;
+  padding: 0;
   font-family: NeueHaasRoman, sans-serif;
   background-color: #efefef;
   /* Charcoal black */
@@ -41,11 +41,11 @@ h2 {
 }
 
 h4 {
-  font-size: 2.4rem;
+  font-size: 2rem;
 }
 
 h5 {
-  font-size: 2.0rem;
+  font-size: 1.8rem;
 }
 
 h6 {
@@ -54,6 +54,15 @@ h6 {
 
 img {
   max-width: 100%;
+}
+
+.shadow {
+  --tw-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    box-shadow: var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow);
+}
+
+header {
+  padding: 1em;
 }
 
 header img {
@@ -304,7 +313,7 @@ header img {
   margin: 0;
   padding: 0;
   width: 200px;
-  background-color: #f1f1f1;
+  background-color: #000;
   position: fixed;
   height: 100%;
   overflow: auto;
@@ -313,7 +322,7 @@ header img {
 /* Sidebar links */
 .sidebar a {
   display: block;
-  color: black;
+  color: #fff;
   padding: 16px;
   text-decoration: none;
 }
@@ -329,13 +338,6 @@ header img {
   background-color: #555;
   color: white;
 }
-
-/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
-/* div.content {
-  margin-left: 200px;
-  padding: 1px 16px;
-  height: 1000px;
-} */
 
 /* On screens that are less than 700px wide, make the sidebar into a topbar */
 @media screen and (max-width: 700px) {
@@ -355,6 +357,72 @@ header img {
     float: none;
   }
 }
+
+/* CONTENT */
+
+.dashboard-content {
+  max-width: 1200px;
+  margin-left: 200px;
+  padding: 0 2em;
+}
+
+.dashboard-panel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1em;
+}
+
+.stat-box {
+  flex-grow: 1;
+  padding: 1em;
+  background-color: #fff;
+  color: #000;
+}
+
+
+.stat-box h5 {
+  font-size: 1.5rem;
+}
+
+/* Albums-table */
+
+/* Reset table styling */
+table, caption, tbody, tfoot, thead, tr, th, td {
+  border-collapse: collapse;
+	border-spacing: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+}
+
+table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+table, table caption {
+  background-color: #ffffff;
+}
+
+thead th, tbody td {
+  padding: 1.2rem 0.2rem;
+}
+
+th {
+  background-color: #F3F4F6;
+  text-align: center;
+}
+
+td {
+  text-align: center;
+}
+
+.albums-table {
+  flex-grow: 4;
+}
+
 
 /* FORMS */
 
