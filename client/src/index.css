@@ -61,11 +61,37 @@ img {
     box-shadow: var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow);
 }
 
+/* HEADER */
+
 header {
   padding: 1em;
 }
 
-header img {
+header h1 {
+  text-align: center;
+}
+
+nav {
+  width: 100%;
+  text-align: center;
+}
+
+nav li {
+  display: inline-block;
+  float: none;
+  vertical-align: middle;
+  margin: 0 1.5em;
+}
+
+nav li a {
+  text-decoration: none;
+  color: #181818;
+  letter-spacing: .1rem;
+  font-weight: bold;
+}
+
+#navbar-logo {
+  width: 10rem;
   max-width: 50%;
 }
 
@@ -106,7 +132,6 @@ header img {
 	 right: 0;
 	 bottom: 0;
 	 left: 0;
-	 background-color: rgba(0, 0, 0, .2);
 }
  .masonry .masonry-item img {
 	 width: 100%;
@@ -456,7 +481,6 @@ input[type=submit] {
 /* Style the container */
 .container {
   border-radius: 5px;
-  background-color: #f2f2f2;
   padding: 20px;
 }
 
