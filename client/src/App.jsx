@@ -4,6 +4,7 @@ import Footer from './components/Footer'
 import Albums from './components/Albums'
 import Masonry from './components/Masonry'
 import Dashboard from './components/dashboard/Dashboard'
+import BackToTopButton from './components/header/BackToTopButton'
 
 export default function App () {
   return (
@@ -18,7 +19,8 @@ export default function App () {
             <Route path='/dashboard/*' element={<Dashboard />} />
           </Routes>
         </main>
-        <Footer />
+        <BackToTopButton />
+        <Footer siteName='RK-photo' />
       </div>
     </BrowserRouter>
   )

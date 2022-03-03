@@ -1,9 +1,11 @@
-import { Link } from 'react-router-dom'
-
-export default function Footer () {
+export default function Footer ({ siteName }) {
   return (
     <footer>
-      <Link to='/dashboard'>Portal</Link>
+      <p>© Copyright - {getCurrentYear()} | Skapat av <a href='https://webble.se'>Webble</a> med <span>❤</span></p>
     </footer>
   )
+}
+
+function getCurrentYear () {
+  return new Date().getFullYear()
 }
