@@ -18,7 +18,7 @@ export default function DAlbumItem ({ token }) {
 
   useEffect(() => {
     const getAlbum = async (albumId) => {
-      const res = await fetch(`http://localhost:4000/albums/${albumId}`)
+      const res = await fetch(`https://rk-photo.herokuapp.com/albums/${albumId}`)
       const data = await res.json()
 
       await setAlbum({
@@ -125,7 +125,7 @@ const handleDeleteBtn = (token) => (event) => {
 }
 
 const updateAlbum = async (album, token) => {
-  const url = `http://localhost:4000/albums/${album.id}`
+  const url = `https://rk-photo.herokuapp.com/albums/${album.id}`
 
   const data = {
     name: album.name,
@@ -150,7 +150,7 @@ const updateAlbum = async (album, token) => {
 }
 
 const deleteAlbum = async (id, token) => {
-  const url = `http://localhost:4000/albums/${id}`
+  const url = `https://rk-photo.herokuapp.com/albums/${id}`
 
   const config = {
     headers: {

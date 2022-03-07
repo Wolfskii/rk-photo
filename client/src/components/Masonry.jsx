@@ -6,7 +6,7 @@ export default function Masonry () {
 
   useEffect(() => {
     const getImages = async (albumId) => {
-      const res = await fetch(`http://localhost:4000/albums/${albumId}`)
+      const res = await fetch(`https://rk-photo.herokuapp.com/albums/${albumId}`)
       const data = await res.json()
 
       setImages(data.images)

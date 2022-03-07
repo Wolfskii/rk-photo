@@ -184,7 +184,7 @@ export default function UploadForm ({ token }) {
     // TODO: Fix bug, sends two time otherwise (first time without images)
     if (album.images.length > 0) {
       // Start upload
-      const url = 'http://localhost:4000/albums'
+      const url = 'https://rk-photo.herokuapp.com/albums'
 
       const data = {
         name: album.name,

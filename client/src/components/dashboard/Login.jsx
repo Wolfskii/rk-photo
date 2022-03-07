@@ -39,7 +39,7 @@ Login.propTypes = {
 
 async function loginUser (credentials) {
   // Start upload
-  const url = 'http://localhost:4000/auth/login'
+  const url = 'https://rk-photo.herokuapp.com/auth/login'
 
   const res = await axios.post(url, credentials)
 

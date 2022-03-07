@@ -15,7 +15,7 @@ export default function Albums () {
 
   // Fetch Albums
   const fetchAlbums = async () => {
-    const res = await fetch('http://localhost:4000/albums')
+    const res = await fetch('https://rk-photo.herokuapp.com/albums')
     const data = await res.json()
 
     return data.albums
