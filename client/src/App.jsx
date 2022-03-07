@@ -12,7 +12,6 @@ export default function App () {
       <div className='App'>
         <Header />
         <main>
-
           <Routes>
             <Route exact path='/' element={<Albums />} />
             <Route path='/album/:id' element={<Masonry />} />
