@@ -9,7 +9,7 @@ import BackToTopButton from './components/header/BackToTopButton'
 export default function App () {
   return (
     <BrowserRouter>
-      <div className='App'>
+      <>
         <Header />
         <main>
           <Routes>
@@ -20,7 +20,7 @@ export default function App () {
         </main>
         <BackToTopButton />
         <Footer siteName='RK-photo' />
-      </div>
+      </>
     </BrowserRouter>
   )
 }

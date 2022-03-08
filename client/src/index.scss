@@ -15,10 +15,19 @@ body, html {
   background-color: #efefef;
   font-size: 18px;
   color: #181818;
+  height: 100%;
+  width: 100%;
 }
 
-#root {
-  height: 100vh;
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: auto;
+  background-color: #ccc;
+  overflow:auto;
 }
 
 h1, h2, h3, h4, h5, h6 {
