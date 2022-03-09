@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react'
 import Thumb from './AlbumThumb'
+import Spinner from './Spinner'
 
 export default function Albums () {
+  const [isLoaded, setIsLoaded] = useState(false)
   const [albums, setAlbums] = useState([])
 
   useEffect(() => {
     const getAlbums = async () => {
       const albumsFromServer = await fetchAlbums()
       await setAlbums(albumsFromServer)
+      setIsLoaded(true)
     }
 
     getAlbums()
@@ -21,11 +24,15 @@ export default function Albums () {
     return data.albums
   }
 
-  return (
-    <div className='albums-listing'>
-      {albums.map((album, index) => (
-        <Thumb key={index} album={album} />
-      ))}
-    </div>
-  )
+  if (!isLoaded) {
+    return <Spinner />
+  } else {
+    return (
+      <div className='albums-listing'>
+        {albums.map((album, index) => (
+          <Thumb key={index} album={album} />
+        ))}
+      </div>
+    )
+  }
 }
