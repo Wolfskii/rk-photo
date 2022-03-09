@@ -22,7 +22,7 @@ export default function Albums () {
   }
 
   return (
-    <div className='albums-listing container'>
+    <div className='albums-listing'>
       {albums.map((album, index) => (
         <Thumb key={index} album={album} />
       ))}

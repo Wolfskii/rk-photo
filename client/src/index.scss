@@ -28,7 +28,6 @@ body, html {
 
 main {
   flex: auto;
-  overflow:auto;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -306,20 +305,21 @@ footer span {
 /* Album grid */
 
 .albums-listing {
-  margin: 2em 8em;
+  text-align: center;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr; /* fix: minimum width of 0 */
-  justify-content: space-between;
-  grid-gap: 5em;
+  grid-template-columns: repeat(4, 1fr); /* fix: minimum width of 0 */
+  justify-content: space-evenly;
+  grid-gap: 4em;
+  padding: 2em 10em;
 }
 
 .album-thumb {
-  height: 35rem;
+  height: 30rem;
 }
 
 .album-thumb img {
   width: 100%;
-  height: 80%;
+  height: 90%;
   object-fit: cover;
 }
 
