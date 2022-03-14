@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Image from './MasonryItem'
+import './Masonry.scss'
 
 export default function Masonry() {
   const [images, setImages] = useState([])
