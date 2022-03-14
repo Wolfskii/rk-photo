@@ -17,7 +17,12 @@ const limiter = rateLimit({
 app.use(cors()) // Allows cross origins
 app.use(limiter)
 app.use(
-  helmet.contentSecurityPolicy({ directives: { defaultSrc: ["'self'"] } })
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      connectSrc: ['*']
+    }
+  })
 )
 app.use(helmet())
 app.use(express.urlencoded({ extended: true }))
@@ -57,7 +62,7 @@ app.use((err, req, res, next) => {
 })
 
 if (process.env.NODE_ENV === 'test') {
-  app.listen(port, () => { })
+  app.listen(port, () => {})
 } else {
   app.listen(port, () => {
     console.log(`Server running on ${port}`)
