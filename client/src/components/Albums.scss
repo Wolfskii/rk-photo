@@ -1,7 +1,7 @@
 .albums {
-  margin: 2em;
+  margin: 2rem 6rem;
   display: grid;
-  grid-gap: 4rem;
+  grid-gap: 6rem;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   justify-items: center;
 }

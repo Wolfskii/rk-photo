@@ -8,13 +8,16 @@
   src: local('NeueHaasRoman'), url(./fonts/NeueHaasDisplayRoman.ttf) format('truetype');
 }
 
+:root {
+  font-size: clamp(12px, calc(12px + ((1vw - 0.8rem) * 1.1)), 2rem);
+}
+
 body,
 html {
   margin: 0;
   padding: 0;
   font-family: NeueHaasRoman, sans-serif;
   background-color: #efefef;
-  font-size: 18px;
   color: #181818;
   height: 100%;
   width: 100%;
@@ -132,7 +135,7 @@ footer {
   color: #fff;
   text-align: center;
   vertical-align: center;
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 footer a {

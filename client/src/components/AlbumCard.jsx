@@ -1,7 +1,13 @@
-import { Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import './AlbumCard.scss'
 
 export default function AlbumCard({ album }) {
+  const navigate = useNavigate()
+
+  function handleClick() {
+    navigate('album/' + album._id)
+  }
+
   const formatIsoDateTime = (isoDateTime) => {
     const date = new Date(isoDateTime)
 
@@ -13,12 +19,10 @@ export default function AlbumCard({ album }) {
   }
 
   return (
-    <div className='album-card shadow' id={album._id}>
-      <Link to={'album/' + album._id}>
-        <img src={album.coverImgUrl} alt='album card img' />
-      </Link>
+    <div className='album-card shadow' id={album._id} onClick={handleClick}>
+      <img src={album.coverImgUrl} alt='album card img' />
       <div className='album-card-info'>
-        <h3>{album.name}</h3>
+        <Link to={'album/' + album._id}>{album.name}</Link>
         <p>{album.category}</p>
         <p>{formatIsoDateTime(album.datetime)}</p>
       </div>
