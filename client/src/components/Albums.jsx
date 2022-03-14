@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
+import './Albums.scss'
 import Thumb from './AlbumThumb'
 import Spinner from './Spinner'
 
-export default function Albums () {
+export default function Albums() {
   const [isLoaded, setIsLoaded] = useState(false)
   const [albums, setAlbums] = useState([])
 

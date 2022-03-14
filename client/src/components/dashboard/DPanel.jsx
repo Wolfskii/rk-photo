@@ -2,7 +2,7 @@ import AlbumsTable from './AlbumsTable'
 import StatBox from './StatBox'
 import { useState, useEffect } from 'react'
 
-export default function DPanel () {
+export default function DPanel() {
   const [albums, setAlbums] = useState([])
 
   useEffect(() => {

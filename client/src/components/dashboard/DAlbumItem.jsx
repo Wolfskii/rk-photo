@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { FaPen, FaTrash } from 'react-icons/fa'
 
-export default function DAlbumItem ({ token }) {
+export default function DAlbumItem({ token }) {
   const [editModeOn, setEditModeOn] = useState(false)
   const [deleteModeOn, setDeleteModeOn] = useState(false)
   const [album, setAlbum] = useState({
@@ -37,12 +37,16 @@ export default function DAlbumItem ({ token }) {
   return (
     <div id='edit-album'>
       <FaPen
-        color='black' fontSize='1.8em' onClick={() => {
+        color='black'
+        fontSize='1.8em'
+        onClick={() => {
           setEditModeOn(!editModeOn)
         }}
       />
       <FaTrash
-        color='black' fontSize='1.8em' onClick={() => {
+        color='black'
+        fontSize='1.8em'
+        onClick={() => {
           if (editModeOn) {
             setEditModeOn(false)
             setDeleteModeOn(deleteModeOn)
@@ -53,22 +57,32 @@ export default function DAlbumItem ({ token }) {
       />
 
       <form id='edit-form'>
-        {editModeOn ? <EditableForm album={album} token={token} /> : <UnEditableForm album={album} />}
+        {editModeOn ? (
+          <EditableForm album={album} token={token} />
+        ) : (
+          <UnEditableForm album={album} />
+        )}
         {deleteModeOn ? <DeleteButton album={album} token={token} /> : ''}
       </form>
-
     </div>
   )
 }
 
-function UnEditableForm ({ album }) {
+function UnEditableForm({ album }) {
   return (
     <>
       <label htmlFor='album-name'>Album-namn:</label>
       <input type='text' id='album-name' name='album-name' defaultValue={album.name} disabled />
 
       <label htmlFor='album-desc'>Beskrivning:</label>
-      <textarea id='album-desc' name='album-desc' rows='10' cols='30' defaultValue={album.description} disabled />
+      <textarea
+        id='album-desc'
+        name='album-desc'
+        rows='10'
+        cols='30'
+        defaultValue={album.description}
+        disabled
+      />
 
       <label htmlFor='album-cat'>Kategori:</label>
       <input type='text' id='album-cat' name='album-cat' defaultValue={album.category} disabled />
@@ -79,14 +93,20 @@ function UnEditableForm ({ album }) {
   )
 }
 
-function EditableForm ({ album, token }) {
+function EditableForm({ album, token }) {
   return (
     <>
       <label htmlFor='album-name'>Album-namn:</label>
       <input type='text' id='album-name' name='album-name' defaultValue={album.name} />
 
       <label htmlFor='album-desc'>Beskrivning:</label>
-      <textarea id='album-desc' name='album-desc' rows='10' cols='30' defaultValue={album.description} />
+      <textarea
+        id='album-desc'
+        name='album-desc'
+        rows='10'
+        cols='30'
+        defaultValue={album.description}
+      />
 
       <label htmlFor='album-cat'>Kategori:</label>
       <input type='text' id='album-cat' name='album-cat' defaultValue={album.category} />
@@ -94,13 +114,17 @@ function EditableForm ({ album, token }) {
       <label htmlFor='album-date'>Datum:</label>
       <input type='date' id='album-date' name='album-date' defaultValue={album.datetime} />
 
-      <input id='submit-btn' type='submit' value='Uppdatera' onClick={handleUpdateBtn(album, token)} />
+      <input
+        id='submit-btn'
+        type='submit'
+        value='Uppdatera'
+        onClick={handleUpdateBtn(album, token)}
+      />
     </>
-
   )
 }
 
-function DeleteButton ({ album, token }) {
+function DeleteButton({ album, token }) {
   return <input id='delete-btn' type='submit' value='Ta bort' onClick={handleDeleteBtn(token)} />
 }
 
@@ -186,7 +210,9 @@ const removeDefaultBehaviours = (event) => {
 const formatToInputDate = (isoDateTime) => {
   const date = new Date(isoDateTime)
   let monthNumber = (date.getMonth() + 1).toString()
-  if (monthNumber.length < 2) { monthNumber = '0' + monthNumber }
+  if (monthNumber.length < 2) {
+    monthNumber = '0' + monthNumber
+  }
 
   return date.getFullYear() + '-' + monthNumber + '-' + date.getDate()
 }

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
+import './AlbumThumb.scss'
 
-export default function AlbumThumb ({ album }) {
+export default function AlbumThumb({ album }) {
   const formatIsoDateTime = (isoDateTime) => {
     const date = new Date(isoDateTime)
 
@@ -13,7 +14,9 @@ export default function AlbumThumb ({ album }) {
 
   return (
     <div className='album-thumb' id={album._id}>
-      <Link to={'album/' + album._id}><img className='album-image shadow' src={album.coverImgUrl} alt='album cover img' /></Link>
+      <Link to={'album/' + album._id}>
+        <img className='shadow' src={album.coverImgUrl} alt='album cover img' />
+      </Link>
       <h3>{album.name}</h3>
       <p>{album.category}</p>
       <p>{formatIsoDateTime(album.datetime)}</p>

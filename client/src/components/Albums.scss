@@ -1,0 +1,8 @@
+.albums-listing {
+  text-align: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* fix: minimum width of 0 */
+  justify-content: space-evenly;
+  grid-gap: 4em;
+  padding: 2em 10em;
+}
