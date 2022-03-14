@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import './Albums.scss'
-import Thumb from './AlbumThumb'
+import Card from './AlbumCard'
 import Spinner from './Spinner'
 
 export default function Albums() {
@@ -29,9 +29,9 @@ export default function Albums() {
     return <Spinner />
   } else {
     return (
-      <div className='albums-listing'>
+      <div className='albums'>
         {albums.map((album, index) => (
-          <Thumb key={index} album={album} />
+          <Card key={index} album={album} />
         ))}
       </div>
     )
