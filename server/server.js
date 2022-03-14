@@ -14,7 +14,7 @@ const limiter = rateLimit({
 })
 
 // MIDDLEWARE
-app.use(cors()) // Allows cross origins
+app.use(cors({ origin: '*' })) // Allows cross origins
 app.use(limiter)
 app.use(
   helmet.contentSecurityPolicy({
