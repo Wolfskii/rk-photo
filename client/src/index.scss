@@ -708,36 +708,3 @@ input[type='submit'] {
 #delete-btn {
   background-color: red;
 }
-
-/* SPINNER */
-
-/* $color: var(--primary); */
-$color: #000;
-$distance: 300%;
-$size: 20px;
-
-@keyframes whirl-bounce {
-  0% {
-    transform: translate(0, -($distance / 2)) scaleX(1) scaleY(1);
-  }
-  100% {
-    transform: translate(0, ($distance / 2)) scaleX(1.1) scaleY(0.9);
-  }
-}
-
-.spinner:before {
-  animation: whirl-bounce 0.5s cubic-bezier(0.6, 0.3, 0.8, 0.5) alternate infinite;
-  background: $color;
-  border-radius: 100%;
-  content: '';
-  display: block;
-  height: $size;
-  width: $size;
-  transform-origin: bottom center;
-}
-
-.spinner-container {
-  display: flex;
-  justify-content: center;
-  padding-top: 10em;
-}
