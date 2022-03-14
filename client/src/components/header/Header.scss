@@ -1,0 +1,31 @@
+header {
+  padding: 1em;
+}
+
+header h1 {
+  text-align: center;
+}
+
+nav {
+  width: 100%;
+  text-align: center;
+}
+
+nav li {
+  display: inline-block;
+  float: none;
+  vertical-align: middle;
+  margin: 0 1.5em;
+}
+
+nav li a {
+  text-decoration: none;
+  color: #181818;
+  letter-spacing: 0.1rem;
+  font-weight: bold;
+}
+
+#navbar-logo {
+  width: 10rem;
+  max-width: 50%;
+}

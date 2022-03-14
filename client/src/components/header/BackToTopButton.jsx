@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
+import './BackToTopButton.scss'
 
-export default function BackToTopButton () {
+export default function BackToTopButton() {
   useEffect(() => {
     listenOnScroll()
   }, [])
@@ -12,7 +13,7 @@ export default function BackToTopButton () {
   )
 }
 
-function backToTop () {
+function backToTop() {
   // document.body.scrollTop = 0 // For Safari
   // document.documentElement.scrollTop = 0 // For Chrome, Firefox, IE and Opera
   document.body.scrollIntoView({
@@ -20,14 +21,16 @@ function backToTop () {
   })
 }
 
-function listenOnScroll () {
+function listenOnScroll() {
   // Get the button:
   const mybutton = document.getElementById('to-top-btn')
 
   // When the user scrolls down 20px from the top of the document, show the button
-  window.onscroll = function () { scrollFunction() }
+  window.onscroll = function () {
+    scrollFunction()
+  }
 
-  function scrollFunction () {
+  function scrollFunction() {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
       mybutton.style.display = 'block'
     } else {

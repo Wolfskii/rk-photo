@@ -1,6 +1,7 @@
 import Navbar from './Navbar'
+import './Header.scss'
 
-export default function Masonry () {
+export default function Masonry() {
   return (
     <header>
       <Navbar />
