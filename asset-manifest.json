@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/static/css/main.a4e6a897.css",
-    "main.js": "/static/js/main.7544f32e.js",
+    "main.js": "/static/js/main.d559870f.js",
     "static/media/NeueHaasDisplayMedium.ttf": "/static/media/NeueHaasDisplayMedium.32921edb532f55cbfdc6.ttf",
     "static/media/NeueHaasDisplayRoman.ttf": "/static/media/NeueHaasDisplayRoman.a4c6f6d97398d8f9a96c.ttf",
     "static/media/Renata Kaleta logo.svg": "/static/media/Renata Kaleta logo.1388a0c4b53f17b286793ca64f06d06e.svg",
     "index.html": "/index.html",
     "main.a4e6a897.css.map": "/static/css/main.a4e6a897.css.map",
-    "main.7544f32e.js.map": "/static/js/main.7544f32e.js.map"
+    "main.d559870f.js.map": "/static/js/main.d559870f.js.map"
   },
   "entrypoints": [
     "static/css/main.a4e6a897.css",
-    "static/js/main.7544f32e.js"
+    "static/js/main.d559870f.js"
   ]
 }
