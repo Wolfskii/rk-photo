@@ -6,12 +6,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
     gap: 4rem;
 
     .container {
       flex: 1 1 340px;
-      padding: 0 1rem;
+      padding: 2rem;
 
       #contact-details {
         .contact-details-row {
