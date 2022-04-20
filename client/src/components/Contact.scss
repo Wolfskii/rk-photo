@@ -13,6 +13,18 @@
       flex: 1 1 340px;
       padding: 0 1rem;
 
+      #contact-details {
+        .contact-details-row {
+          div {
+            display: inline-block;
+
+            .fa {
+              margin-right: 0.5rem;
+            }
+          }
+        }
+      }
+
       &:nth-child(odd) {
         background-color: white;
 

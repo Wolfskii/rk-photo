@@ -5,17 +5,15 @@ export default function Contact () {
     <div id='contact'>
       <div className='content'>
         <div className='container'>
-          <div>
+          <div id='contact-details'>
             <h3>Kontaktuppgifter</h3>
             <p>Nå mig på annat sätt:</p>
-            <div>
+            <div className='contact-details-row'>
               <div>
                 <span className='fa fa-facebook-square' />
               </div>
               <div>
-                ;
                 <p>
-                  <span>Facebook:</span>{' '}
                   <a
                     href='https://www.facebook.com/renatakaleta66'
                     target='_blank'
@@ -26,37 +24,50 @@ export default function Contact () {
                 </p>
               </div>
             </div>
-            <div>
+            <div className='contact-details-row'>
+              <div>
+                <span className='fa fa-instagram' />
+              </div>
+              <div>
+                <p>
+                  <a
+                    href='https://www.instagram.com/renata1266'
+                    target='_blank'
+                    rel='noreferrer'
+                  >
+                    Renata Kaleta
+                  </a>
+                </p>
+              </div>
+            </div>
+            <div className='contact-details-row'>
               <div>
                 <span className='fa fa-phone' />
               </div>
               <div>
                 <p>
-                  <span>Mobil:</span>{' '}
                   <a href='tel://1234567920'>+46 708 51 51 51</a>
                 </p>
               </div>
             </div>
-            <div>
+            <div className='contact-details-row'>
               <div>
                 <span className='fa fa-envelope' />
               </div>
               <div>
                 <p>
-                  <span>E-post:</span>{' '}
                   <a href='mailto:renatakaleta@hotmail.com'>
                     renatakaleta@hotmail.com
                   </a>
                 </p>
               </div>
             </div>
-            <div>
+            <div className='contact-details-row'>
               <div>
                 <span className='fa fa-globe' />
               </div>
               <div>
                 <p>
-                  <span>Hemsida:</span>{' '}
                   <a
                     href='https://rk-photo.se'
                     target='_blank'
@@ -70,7 +81,7 @@ export default function Contact () {
           </div>
         </div>
         <div className='container'>
-          <div>
+          <div id='contact-form'>
             <h3>Skriv till mig</h3>
             <form
               method='POST'
