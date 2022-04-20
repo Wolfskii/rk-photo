@@ -7,7 +7,7 @@ import AboutMe from './components/AboutMe'
 import Dashboard from './components/dashboard/Dashboard'
 import BackToTopButton from './components/header/BackToTopButton'
 
-export default function App() {
+export default function App () {
   return (
     <BrowserRouter>
       <>

@@ -1,6 +1,6 @@
 import './Footer.scss'
 
-export default function Footer({ siteName }) {
+export default function Footer ({ siteName }) {
   return (
     <footer>
       <p>
@@ -14,6 +14,6 @@ export default function Footer({ siteName }) {
   )
 }
 
-function getCurrentYear() {
+function getCurrentYear () {
   return new Date().getFullYear()
 }

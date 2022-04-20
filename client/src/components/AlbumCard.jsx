@@ -1,14 +1,14 @@
 import { useNavigate, Link } from 'react-router-dom'
 import './AlbumCard.scss'
 
-export default function AlbumCard({ album }) {
+export default function AlbumCard ({ album }) {
   const navigate = useNavigate()
 
-  function handleClick() {
+  function handleClick () {
     navigate('album/' + album._id)
   }
 
-  const formatIsoDateTime = (isoDateTime) => {
+  const formatIsoDateTime = isoDateTime => {
     const date = new Date(isoDateTime)
 
     const ye = new Intl.DateTimeFormat('sv', { year: 'numeric' }).format(date)
