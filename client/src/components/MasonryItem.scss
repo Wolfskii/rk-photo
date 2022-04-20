@@ -1,3 +1,5 @@
+@import '../variables.scss';
+
 .masonry-item {
   display: inline-block;
   margin-bottom: 16px;
@@ -29,7 +31,7 @@
 .modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  z-index: 9999999; /* Sit on top */
   padding-top: 100px; /* Location of the box */
   left: 0;
   top: 0;
@@ -45,7 +47,11 @@
   margin: auto;
   display: block;
   width: 80%;
-  max-width: 1200px;
+  max-width: 75rem;
+
+  @media screen and (max-width: $breakpoint-L) {
+    max-width: 90%;
+  }
 }
 
 /* Caption of Modal Image (Image Text) - Same Width as the Image */
