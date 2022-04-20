@@ -4,6 +4,7 @@ import Footer from './components/Footer'
 import Albums from './components/Albums'
 import Masonry from './components/Masonry'
 import AboutMe from './components/AboutMe'
+import Contact from './components/Contact'
 import Dashboard from './components/dashboard/Dashboard'
 import BackToTopButton from './components/header/BackToTopButton'
 
@@ -17,6 +18,7 @@ export default function App () {
             <Route exact path='/' element={<Albums />} />
             <Route path='/album/:id' element={<Masonry />} />
             <Route exact path='/om-mig' element={<AboutMe />} />
+            <Route exact path='/kontakt' element={<Contact />} />
             <Route path='/dashboard/*' element={<Dashboard />} />
           </Routes>
         </main>

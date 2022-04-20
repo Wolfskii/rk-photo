@@ -1,0 +1,28 @@
+@import '../variables.scss';
+
+#contact {
+  .content {
+    margin: 0rem 6rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+
+    .container {
+      flex: 1 1 340px;
+      padding: 0 1rem;
+
+      &:nth-child(odd) {
+        background-color: white;
+
+        @media screen and (min-width: $breakpoint-L) {
+          max-width: 35%;
+        }
+      }
+      &:nth-child(even) {
+        background-color: white;
+      }
+    }
+  }
+}
