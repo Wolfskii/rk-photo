@@ -5,7 +5,7 @@ import ImageUploader from './ImageUploader'
 import AlbumDetails from './AlbumDetails'
 const axios = progressfy(_axios)
 
-export default function UploadForm ({ token }) {
+export default function UploadForm({ token }) {
   const availableSteps = ['DETAILS', 'COVER', 'PHOTOS', 'FINISH']
   const [currStep, setCurrStep] = useState(0)
 
@@ -83,7 +83,7 @@ export default function UploadForm ({ token }) {
     }
   }
 
-  function stepForward () {
+  function stepForward() {
     if (currStep < availableSteps.length - 1) {
       setCurrStep(currStep + 1)
     } else {
@@ -91,7 +91,7 @@ export default function UploadForm ({ token }) {
     }
   }
 
-  function stepBackward () {
+  function stepBackward() {
     if (currStep > 0) {
       setCurrStep(currStep - 1)
     } else {
@@ -99,13 +99,13 @@ export default function UploadForm ({ token }) {
     }
   }
 
-  function resetToStart () {
+  function resetToStart() {
     // TODO: Clear all data to start over
     setCurrStep(0)
     // Or redirect to albums page in DB
   }
 
-  function stepForward () {
+  function stepForward() {
     if (currStep < availableSteps.length - 1) {
       setCurrStep(currStep + 1)
     } else {
@@ -113,19 +113,19 @@ export default function UploadForm ({ token }) {
     }
   }
 
-  function retrieveDetails (details) {
+  function retrieveDetails(details) {
     setName(details.name)
-    setDesccription(details.desccription)
+    setDesccription(details.description)
     setCategory(details.category)
 
-    if (datetime !== '') {
+    if (details.datetime !== '') {
       setDatetime(details.datetime)
     }
 
     stepForward()
   }
 
-  function retrievedUploadedPics (imgUrls) {
+  function retrievedUploadedPics(imgUrls) {
     setPhotos(imgUrls)
     stepForward()
   }

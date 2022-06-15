@@ -1,5 +1,5 @@
-export default function AlbumDetails ({ retrieveDetails }) {
-  function saveDetails () {
+export default function AlbumDetails({ retrieveDetails }) {
+  function getDetails() {
     const details = {
       name: document.getElementById('album-name').value,
       description: document.getElementById('album-desc').value,
@@ -12,11 +12,13 @@ export default function AlbumDetails ({ retrieveDetails }) {
       details.datetime = datetime
     }
 
+    console.log(details)
+
     retrieveDetails(details)
   }
 
   return (
-    <form onSubmit={saveDetails}>
+    <form>
       <label htmlFor='album-name'>Album-namn:</label>
       <input type='text' id='album-name' name='album-name' />
       <label htmlFor='album-desc'>Beskrivning:</label>
@@ -25,7 +27,7 @@ export default function AlbumDetails ({ retrieveDetails }) {
       <input type='text' id='album-cat' name='album-cat' />
       <label htmlFor='album-date'>Datum:</label>
       <input type='date' id='album-date' name='album-date' />
-      <input id='submit-album-btn' type='submit' value='Nästa' />
+      <input type='submit' id='submit-album-btn' onClick={getDetails} value='Nästa' />
     </form>
   )
 }
