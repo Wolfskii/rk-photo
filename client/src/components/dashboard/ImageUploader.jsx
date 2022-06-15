@@ -66,8 +66,6 @@ export default function ImageUploader({ ImgurClientID, onUpload }) {
   uppy.on('complete', (result) => {
     // console.log('Upload complete! Uploaded files:', result.successful)
     //console.log(result.successful)
-    // TODO: Skicka upp hela bild-arrayen till UploadForm
-
     onUpload(uploadedImgUrls)
   })
 
