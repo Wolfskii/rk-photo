@@ -2,6 +2,7 @@ import Uppy from '@uppy/core'
 import XHRUpload from '@uppy/xhr-upload'
 import ImageEditor from '@uppy/image-editor'
 import { Dashboard } from '@uppy/react'
+import Swedish from '@uppy/locales/lib/sv_SE'
 import '@uppy/image-editor/dist/style.css'
 import '@uppy/core/dist/style.css'
 import '@uppy/dashboard/dist/style.css'
@@ -11,6 +12,7 @@ export default function ImageUploader ({ imgurClientID, onUpload, maxPhotos }) {
   const uploadedImgUrls = []
 
   const uppy = new Uppy({
+    locale: Swedish,
     autoProceed: false,
     restrictions: {
       maxFileSize: 20000000,
