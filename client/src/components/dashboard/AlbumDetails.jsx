@@ -1,5 +1,5 @@
-export default function AlbumDetails({ retrieveDetails }) {
-  function getDetails() {
+export default function AlbumDetails ({ retrieveDetails }) {
+  function getDetails () {
     const details = {
       name: document.getElementById('album-name').value,
       description: document.getElementById('album-desc').value,
@@ -11,8 +11,6 @@ export default function AlbumDetails({ retrieveDetails }) {
     if (datetime !== '') {
       details.datetime = datetime
     }
-
-    console.log(details)
 
     retrieveDetails(details)
   }

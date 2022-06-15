@@ -11,7 +11,7 @@ export default function UploadForm({ token }) {
 
   // Album data
   const [name, setName] = useState('')
-  const [desccription, setDesccription] = useState('')
+  const [description, setDescription] = useState('')
   const [category, setCategory] = useState('')
   const [datetime, setDatetime] = useState('')
   const [coverImg, setCoverImg] = useState('')
@@ -52,35 +52,31 @@ export default function UploadForm({ token }) {
     return album
   } */
 
-  const saveAlbumOnline = async (album) => {
+  const saveAlbumOnline = async () => {
     // TODO: Fix bug, sends two time otherwise (first time without images)
-    if (album.images.length > 0) {
-      // Start upload
-      const url = 'https://rk-photo.herokuapp.com/albums'
 
-      const data = {
-        name: album.name,
-        description: album.description,
-        category: album.category,
-        coverImgUrl: 'https://www.kamerabild.se/sites/kamerabild.se/files/styles/article_image/public/field/image/skarmavbild_2019-06-10_kl._08.25.30.png?itok=pPkJz20Q',
-        images: album.images
-      }
+    const url = 'https://rk-photo.herokuapp.com/albums'
 
-      // Since datetime isn't obligatory and can be set automatically by API
-      if (album.datetime) {
-        data.datetime = album.datetime
-      }
-
-      const config = {
-        headers: {
-          'auth-token': token
-        }
-      }
-
-      const res = await axios.post(url, data, config)
-
-      console.log(res)
+    const data = {
+      name: name,
+      description: description,
+      category: category,
+      coverImgUrl: coverImg,
+      images: photos
     }
+
+    // Since datetime isn't obligatory and can be set automatically by API
+    if (datetime !== '') {
+      data.datetime = datetime
+    }
+
+    const config = {
+      headers: {
+        'auth-token': token
+      }
+    }
+
+    const res = await axios.post(url, data, config)
   }
 
   function stepForward() {
@@ -100,9 +96,15 @@ export default function UploadForm({ token }) {
   }
 
   function resetToStart() {
-    // TODO: Clear all data to start over
+    setName('')
+    setDescription('')
+    setCategory('')
+    setDatetime('')
+    setCoverImg('')
+    setPhotos([])
+
     setCurrStep(0)
-    // Or redirect to albums page in DB
+    // TODO: Or redirect to albums page in DB
   }
 
   function stepForward() {
@@ -115,7 +117,7 @@ export default function UploadForm({ token }) {
 
   function retrieveDetails(details) {
     setName(details.name)
-    setDesccription(details.description)
+    setDescription(details.description)
     setCategory(details.category)
 
     if (details.datetime !== '') {
@@ -130,14 +132,35 @@ export default function UploadForm({ token }) {
     stepForward()
   }
 
+  function retrievedCoverImg(imgUrls) {
+    setCoverImg(imgUrls[0])
+    stepForward()
+  }
+
   if (availableSteps[currStep] === 'DETAILS') {
-    return <AlbumDetails retrieveDetails={retrieveDetails} />
+    return (
+      <>
+        <h3>Album-information</h3>
+        <AlbumDetails retrieveDetails={retrieveDetails} />
+      </>
+    )
   } else if (availableSteps[currStep] === 'COVER') {
-    return <ImageUploader imgurClientID='ab4e03fd5059830' onUpload={retrievedUploadedPics} maxPhotos='1' stepForward={stepForward} stepBackward={stepBackward} />
+    return (
+      <>
+        <h3>Album-omslag</h3>
+        <ImageUploader imgurClientID='ab4e03fd5059830' onUpload={retrievedCoverImg} maxPhotos='1' stepForward={stepForward} stepBackward={stepBackward} />
+      </>
+    )
   } else if (availableSteps[currStep] === 'PHOTOS') {
-    return <ImageUploader imgurClientID='ab4e03fd5059830' onUpload={retrievedUploadedPics} maxPhotos='0' stepForward={stepForward} stepBackward={stepBackward} />
+    return (
+      <>
+        <h3>Album-foton</h3>
+        <ImageUploader imgurClientID='ab4e03fd5059830' onUpload={retrievedUploadedPics} maxPhotos='1000' stepForward={stepForward} stepBackward={stepBackward} />
+      </>
+    )
   } else if (availableSteps[currStep] === 'FINISH') {
-    // TODO: Add finish-page with both success or error
-    // stepBackward={stepBackward} resetToStart={resetToStart}
+    saveAlbumOnline()
+    resetToStart()
+    // stepBackward={stepBackward} if=fail //  resetToStart={resetToStart}
   }
 }

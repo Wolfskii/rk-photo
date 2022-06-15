@@ -7,7 +7,7 @@ import '@uppy/core/dist/style.css'
 import '@uppy/dashboard/dist/style.css'
 import './ImageUploader.scss'
 
-export default function ImageUploader({ imgurClientID, onUpload, maxPhotos }) {
+export default function ImageUploader ({ imgurClientID, onUpload, maxPhotos }) {
   const uploadedImgUrls = []
 
   const uppy = new Uppy({
@@ -69,5 +69,19 @@ export default function ImageUploader({ imgurClientID, onUpload, maxPhotos }) {
     onUpload(uploadedImgUrls)
   })
 
-  return <Dashboard uppy={uppy} plugins={['ImageEditor']} />
+  return (
+    <Dashboard
+      uppy={uppy}
+      plugins={['ImageEditor']}
+      locale={{
+        strings: {
+          // Text to show on the droppable area.
+          // `%{browse}` is replaced with a link that opens the system file selection dialog.
+          dropHereOr: 'Drop here or %{browse}',
+          // Used as the label for the link that opens the system file selection dialog.
+          browse: 'browse'
+        }
+      }}
+    />
+  )
 }
