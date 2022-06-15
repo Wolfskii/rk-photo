@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import Uppy from '@uppy/core'
 import XHRUpload from '@uppy/xhr-upload'
 import ImageEditor from '@uppy/image-editor'
@@ -9,10 +8,7 @@ import '@uppy/dashboard/dist/style.css'
 import './ImageUploader.scss'
 
 export default function ImageUploader({ ImgurClientID, onUpload }) {
-  const [images, setImages] = useState([])
   let imgUrls = []
-
-  useEffect(() => {}, [])
 
   const uppy = new Uppy({
     autoProceed: false,
