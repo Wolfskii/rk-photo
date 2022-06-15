@@ -1,17 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.6ef10ae1.css",
-    "main.js": "/static/js/main.2ea25daa.js",
+    "main.css": "/static/css/main.76a9df66.css",
+    "main.js": "/static/js/main.56558732.js",
     "static/media/NeueHaasDisplayMedium.ttf": "/static/media/NeueHaasDisplayMedium.32921edb532f55cbfdc6.ttf",
     "static/media/NeueHaasDisplayRoman.ttf": "/static/media/NeueHaasDisplayRoman.a4c6f6d97398d8f9a96c.ttf",
     "static/media/Renata Kaleta logo.svg": "/static/media/Renata Kaleta logo.1388a0c4b53f17b286793ca64f06d06e.svg",
     "index.html": "/index.html",
+    "static/media/svg%3E": "/static/media/.9c09d9a2627e2eb9336d.svg",
+    "static/media/HkDxOGAAAAAElFTkSuQmCC": "/static/media/.91f6ac4f3adddee7cb19.png",
     "static/media/javascript,__webpack_public_path__ = __webpack_base_uri__ = htmlWebpackPluginPublicPath;": "/static/media/.1feff74faaf0efc6a044",
-    "main.6ef10ae1.css.map": "/static/css/main.6ef10ae1.css.map",
-    "main.2ea25daa.js.map": "/static/js/main.2ea25daa.js.map"
+    "main.76a9df66.css.map": "/static/css/main.76a9df66.css.map",
+    "main.56558732.js.map": "/static/js/main.56558732.js.map"
   },
   "entrypoints": [
-    "static/css/main.6ef10ae1.css",
-    "static/js/main.2ea25daa.js"
+    "static/css/main.76a9df66.css",
+    "static/js/main.56558732.js"
   ]
 }
