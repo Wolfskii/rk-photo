@@ -7,14 +7,14 @@ import '@uppy/core/dist/style.css'
 import '@uppy/dashboard/dist/style.css'
 import './ImageUploader.scss'
 
-export default function ImageUploader({ ImgurClientID, onUpload }) {
-  let uploadedImgUrls = []
+export default function ImageUploader({ imgurClientID, onUpload, maxPhotos }) {
+  const uploadedImgUrls = []
 
   const uppy = new Uppy({
     autoProceed: false,
     restrictions: {
       maxFileSize: 20000000,
-      maxNumberOfFiles: 0,
+      maxNumberOfFiles: maxPhotos,
       minNumberOfFiles: 1,
       allowedFileTypes: ['image/jpeg', 'image/jpg', 'image/png', 'image/gif']
     }
@@ -49,7 +49,7 @@ export default function ImageUploader({ ImgurClientID, onUpload }) {
     formData: false,
     headers: {
       'Content-type': 'application/x-www-form-urlencoded',
-      Authorization: `Client-ID ${ImgurClientID}`
+      Authorization: `Client-ID ${imgurClientID}`
     }
   })
 
@@ -65,7 +65,7 @@ export default function ImageUploader({ ImgurClientID, onUpload }) {
 
   uppy.on('complete', (result) => {
     // console.log('Upload complete! Uploaded files:', result.successful)
-    //console.log(result.successful)
+    // console.log(result.successful)
     onUpload(uploadedImgUrls)
   })
 

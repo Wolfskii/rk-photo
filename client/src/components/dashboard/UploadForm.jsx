@@ -2,10 +2,20 @@ import _axios from 'axios'
 import progressfy from 'axios-progressfy'
 import { useState, useEffect } from 'react' // Adding progressify to axios
 import ImageUploader from './ImageUploader'
+import AlbumDetails from './AlbumDetails'
 const axios = progressfy(_axios)
 
-export default function UploadForm({ token }) {
-  const [images, setImages] = useState([])
+export default function UploadForm ({ token }) {
+  const availableSteps = ['DETAILS', 'COVER', 'PHOTOS', 'FINISH']
+  const [currStep, setCurrStep] = useState(0)
+
+  // Album data
+  const [name, setName] = useState('')
+  const [desccription, setDesccription] = useState('')
+  const [category, setCategory] = useState('')
+  const [datetime, setDatetime] = useState('')
+  const [coverImg, setCoverImg] = useState('')
+  const [photos, setPhotos] = useState([])
 
   useEffect(() => {
     /*     const submitBtn = document.getElementById('submit-album-btn') */
@@ -20,14 +30,7 @@ export default function UploadForm({ token }) {
     ) */
   }, [])
 
-  // Output
-  const output = (msg) => {
-    // Response
-    const m = document.getElementById('messages')
-    m.innerHTML = msg
-  }
-
-  const getAlbumFormData = async () => {
+  /*   const getAlbumFormData = async () => {
     const album = {
       name: document.getElementById('album-name').value,
       description: document.getElementById('album-desc').value,
@@ -47,7 +50,7 @@ export default function UploadForm({ token }) {
     }
 
     return album
-  }
+  } */
 
   const saveAlbumOnline = async (album) => {
     // TODO: Fix bug, sends two time otherwise (first time without images)
@@ -80,37 +83,61 @@ export default function UploadForm({ token }) {
     }
   }
 
-  function retrievedUploadedPics(imgUrls) {
-    setImages(imgUrls)
-    // TODO: Change state to next step in process
+  function stepForward () {
+    if (currStep < availableSteps.length - 1) {
+      setCurrStep(currStep + 1)
+    } else {
+      console.log('Cannot go forward, is already last step!')
+    }
   }
 
-  const submitForm = async (e) => {
-    e.preventDefault()
-    const album = await getAlbumFormData()
-    await saveAlbumOnline(album)
+  function stepBackward () {
+    if (currStep > 0) {
+      setCurrStep(currStep - 1)
+    } else {
+      console.log('Cannot go back, is already first step!')
+    }
   }
 
-  return (
-    <div id='main-form'>
-      <h2>Nytt album</h2>
+  function resetToStart () {
+    // TODO: Clear all data to start over
+    setCurrStep(0)
+    // Or redirect to albums page in DB
+  }
 
-      <form onSubmit={submitForm}>
-        <label htmlFor='album-name'>Album-namn:</label>
-        <input type='text' id='album-name' name='album-name' />
-        <label htmlFor='album-desc'>Beskrivning:</label>
-        <textarea id='album-desc' name='album-desc' rows='10' cols='30' />
-        <label htmlFor='album-cat'>Kategori:</label>
-        <input type='text' id='album-cat' name='album-cat' />
-        <label htmlFor='album-date'>Datum:</label>
-        <input type='date' id='album-date' name='album-date' />
-        <input id='submit-album-btn' type='submit' value='Spara' />
-      </form>
-      <ImageUploader ImgurClientID='ab4e03fd5059830' onUpload={retrievedUploadedPics} />
+  function stepForward () {
+    if (currStep < availableSteps.length - 1) {
+      setCurrStep(currStep + 1)
+    } else {
+      console.log('Cannot go forward, is already last step!')
+    }
+  }
 
-      {images.map(function (image, i) {
-        return <img src={image} alt={`somepic-${i}`} key={i} />
-      })}
-    </div>
-  )
+  function retrieveDetails (details) {
+    setName(details.name)
+    setDesccription(details.desccription)
+    setCategory(details.category)
+
+    if (datetime !== '') {
+      setDatetime(details.datetime)
+    }
+
+    stepForward()
+  }
+
+  function retrievedUploadedPics (imgUrls) {
+    setPhotos(imgUrls)
+    stepForward()
+  }
+
+  if (availableSteps[currStep] === 'DETAILS') {
+    return <AlbumDetails retrieveDetails={retrieveDetails} />
+  } else if (availableSteps[currStep] === 'COVER') {
+    return <ImageUploader imgurClientID='ab4e03fd5059830' onUpload={retrievedUploadedPics} maxPhotos='1' stepForward={stepForward} stepBackward={stepBackward} />
+  } else if (availableSteps[currStep] === 'PHOTOS') {
+    return <ImageUploader imgurClientID='ab4e03fd5059830' onUpload={retrievedUploadedPics} maxPhotos='0' stepForward={stepForward} stepBackward={stepBackward} />
+  } else if (availableSteps[currStep] === 'FINISH') {
+    // TODO: Add finish-page with both success or error
+    // stepBackward={stepBackward} resetToStart={resetToStart}
+  }
 }
