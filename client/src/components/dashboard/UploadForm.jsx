@@ -106,10 +106,10 @@ export default function UploadForm({ token }) {
         <input type='date' id='album-date' name='album-date' />
         <input id='submit-album-btn' type='submit' value='Spara' />
       </form>
-      <ImageUploader ImgurClientID='ab4e03fd5059830' onUpload='' />
+      <ImageUploader ImgurClientID='ab4e03fd5059830' onUpload={retrievedUploadedPics} />
 
       {images.map(function (image, i) {
-        return <img src={image} alt='somepic' />
+        return <img src={image} alt={`somepic-${i}`} key={i} />
       })}
     </div>
   )

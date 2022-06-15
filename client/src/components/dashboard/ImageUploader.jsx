@@ -8,7 +8,7 @@ import '@uppy/dashboard/dist/style.css'
 import './ImageUploader.scss'
 
 export default function ImageUploader({ ImgurClientID, onUpload }) {
-  let imgUrls = []
+  let uploadedImgUrls = []
 
   const uppy = new Uppy({
     autoProceed: false,
@@ -59,7 +59,7 @@ export default function ImageUploader({ ImgurClientID, onUpload }) {
     const uploadedImgLink = httpBody.data.link
 
     // Do something with file and response
-    imgUrls.push(uploadedImgLink)
+    uploadedImgUrls.push(uploadedImgLink)
     console.log(uploadedImgLink)
   })
 
@@ -68,7 +68,7 @@ export default function ImageUploader({ ImgurClientID, onUpload }) {
     //console.log(result.successful)
     // TODO: Skicka upp hela bild-arrayen till UploadForm
 
-    console.log(imgUrls)
+    onUpload(uploadedImgUrls)
   })
 
   return <Dashboard uppy={uppy} plugins={['ImageEditor']} />
