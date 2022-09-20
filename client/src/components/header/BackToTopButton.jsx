@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import UpArrow from '../../assets/images/icons/arrow-up.svg'
 import './BackToTopButton.scss'
 
 export default function BackToTopButton() {
@@ -8,14 +9,12 @@ export default function BackToTopButton() {
 
   return (
     <button onClick={backToTop} id='to-top-btn' title='Tillbaka upp'>
-      Upp
+      <img src={UpArrow} alt='up arrow' />
     </button>
   )
 }
 
 function backToTop() {
-  // document.body.scrollTop = 0 // For Safari
-  // document.documentElement.scrollTop = 0 // For Chrome, Firefox, IE and Opera
   document.body.scrollIntoView({
     behavior: 'smooth'
   })

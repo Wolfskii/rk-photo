@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import './Albums.scss'
 import Card from './AlbumCard'
 import Spinner from './Spinner'
@@ -36,8 +35,6 @@ export default function Albums () {
             <Card key={index} album={album} />
           ))}
         </div>
-
-        <Link to='dashboard/'>Portal</Link>
       </>
     )
   }

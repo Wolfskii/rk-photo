@@ -1,9 +1,16 @@
+import { Link } from 'react-router-dom'
+import AdminIcon from '../assets/images/icons/cog.svg'
 import './Footer.scss'
 
-export default function Footer ({ siteName }) {
+export default function Footer({ siteName }) {
   return (
     <footer>
-      <p>
+      <Link className='portal-link' to='dashboard/'>
+        <img src={AdminIcon} alt='admin icon' />
+        <span>Portal</span>
+      </Link>
+
+      <p className='copyright-msg'>
         © Copyright {getCurrentYear()} - Skapat av{' '}
         <a href='https://webble.se' target='_blank' rel='noreferrer'>
           Webble
@@ -14,6 +21,6 @@ export default function Footer ({ siteName }) {
   )
 }
 
-function getCurrentYear () {
+function getCurrentYear() {
   return new Date().getFullYear()
 }

@@ -12,8 +12,31 @@ footer {
 footer a {
   text-decoration: none;
   color: #e60000;
+
+  :hover {
+    color: #fff;
+  }
 }
 
-footer span {
+.copyright-msg span {
   color: #e60000;
+}
+
+.portal-link {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 1.2rem;
+  left: 1.2rem;
+
+  span {
+    font-size: 0.8rem;
+    color: #ffffff;
+  }
+
+  img {
+    max-height: 1.2rem;
+    margin-right: 0.25rem;
+    filter: invert(9%) sepia(98%) saturate(5659%) hue-rotate(358deg) brightness(109%) contrast(123%);
+  }
 }
