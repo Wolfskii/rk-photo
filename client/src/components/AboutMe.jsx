@@ -1,6 +1,7 @@
+import ProfilePhoto from '../assets/images/profile-photo.png'
 import './AboutMe.scss'
 
-export default function AboutMe () {
+export default function AboutMe() {
   return (
     <div id='about-me'>
       <div className='heading'>
@@ -11,45 +12,22 @@ export default function AboutMe () {
         <div className='container'>
           <div className='sub-container'>
             <div>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
+              <p>Kul att just du hittat hit! Hoppas du gillar mina bilder. Vad kan jag berätta om mig själv? Jag har över tio år fotograferat som en extra hobby och blivit rätt vass på det, om jag får säga det själv. Jag tyckte det var kul efter att ha testat att fotografera på några danstävlingar i början och fastnade snabbt, vilket ledde till fördjupat lärande och mängder med inköp av kameror, linser och stativ.</p>
             </div>
           </div>
           <div className='sub-container'>
             <div>
               <h4>Fotografier</h4>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit.
-              </p>
+              <p>Foton är väldigt intressanta. De kan berätta en historia, beröra, lugna själen och så mycket mer. Foton kan ha olika betydelse från person till person och ingens tolkning eller känslor är någonsin fel. Det är helt enkelt så mycket mer än bara en bild. För mig kan ett foto återblicka till ett kärt minne, med familj, vänner eller en speciell plats som ligger en nära om hjärtat.</p>
             </div>
             <div>
-              <h4>Event</h4>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit.
-              </p>
+              <h4>Evenemang</h4>
+              <p>Jag är numera rätt van och erfaren när det kommer till evenemange, stora som små, inomhus och utomhus i olika ljusförhållanden. Intresserad? Gå till sidan "Kontakta mig" för att ta kontakt!</p>
             </div>
           </div>
         </div>
         <div className='container'>
-          <img
-            src='https://scontent.fbma2-1.fna.fbcdn.net/v/t1.6435-9/90354605_2676018469190459_6388694351639216128_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=jssdoCNcY94AX-R2GIt&tn=0eahHqVl2nNaQd-N&_nc_ht=scontent.fbma2-1.fna&oh=00_AT_LzwpCtAjJR5GlB-5uLJq-taHRqTb5YczpomkcfkRkSA&oe=6284257E'
-            alt='Renata foto'
-          />
+          <img src={ProfilePhoto} alt='Renata foto' />
         </div>
       </div>
     </div>
