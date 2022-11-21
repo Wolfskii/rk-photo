@@ -18,7 +18,7 @@ export default function DAlbumItem({ token }) {
 
   useEffect(() => {
     const getAlbum = async (albumId) => {
-      const res = await fetch(`https://rk-photo.herokuapp.com/albums/${albumId}`)
+      const res = await fetch(`https://calm-cyan-panther-veil.cyclic.app/albums/${albumId}`)
       const data = await res.json()
 
       await setAlbum({
@@ -57,11 +57,7 @@ export default function DAlbumItem({ token }) {
       />
 
       <form id='edit-form'>
-        {editModeOn ? (
-          <EditableForm album={album} token={token} />
-        ) : (
-          <UnEditableForm album={album} />
-        )}
+        {editModeOn ? <EditableForm album={album} token={token} /> : <UnEditableForm album={album} />}
         {deleteModeOn ? <DeleteButton album={album} token={token} /> : ''}
       </form>
     </div>
@@ -75,14 +71,7 @@ function UnEditableForm({ album }) {
       <input type='text' id='album-name' name='album-name' defaultValue={album.name} disabled />
 
       <label htmlFor='album-desc'>Beskrivning:</label>
-      <textarea
-        id='album-desc'
-        name='album-desc'
-        rows='10'
-        cols='30'
-        defaultValue={album.description}
-        disabled
-      />
+      <textarea id='album-desc' name='album-desc' rows='10' cols='30' defaultValue={album.description} disabled />
 
       <label htmlFor='album-cat'>Kategori:</label>
       <input type='text' id='album-cat' name='album-cat' defaultValue={album.category} disabled />
@@ -100,13 +89,7 @@ function EditableForm({ album, token }) {
       <input type='text' id='album-name' name='album-name' defaultValue={album.name} />
 
       <label htmlFor='album-desc'>Beskrivning:</label>
-      <textarea
-        id='album-desc'
-        name='album-desc'
-        rows='10'
-        cols='30'
-        defaultValue={album.description}
-      />
+      <textarea id='album-desc' name='album-desc' rows='10' cols='30' defaultValue={album.description} />
 
       <label htmlFor='album-cat'>Kategori:</label>
       <input type='text' id='album-cat' name='album-cat' defaultValue={album.category} />
@@ -114,12 +97,7 @@ function EditableForm({ album, token }) {
       <label htmlFor='album-date'>Datum:</label>
       <input type='date' id='album-date' name='album-date' defaultValue={album.datetime} />
 
-      <input
-        id='submit-btn'
-        type='submit'
-        value='Uppdatera'
-        onClick={handleUpdateBtn(album, token)}
-      />
+      <input id='submit-btn' type='submit' value='Uppdatera' onClick={handleUpdateBtn(album, token)} />
     </>
   )
 }
@@ -149,7 +127,7 @@ const handleDeleteBtn = (token) => (event) => {
 }
 
 const updateAlbum = async (album, token) => {
-  const url = `https://rk-photo.herokuapp.com/albums/${album.id}`
+  const url = `https://calm-cyan-panther-veil.cyclic.app/albums/${album.id}`
 
   const data = {
     name: album.name,
@@ -174,7 +152,7 @@ const updateAlbum = async (album, token) => {
 }
 
 const deleteAlbum = async (id, token) => {
-  const url = `https://rk-photo.herokuapp.com/albums/${id}`
+  const url = `https://calm-cyan-panther-veil.cyclic.app/albums/${id}`
 
   const config = {
     headers: {

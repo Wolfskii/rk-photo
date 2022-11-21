@@ -2,11 +2,11 @@ import axios from 'axios'
 import { useState } from 'react'
 import PropTypes from 'prop-types'
 
-export default function Login ({ setToken }) {
+export default function Login({ setToken }) {
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const token = await loginUser({
       email,
@@ -21,11 +21,11 @@ export default function Login ({ setToken }) {
         <h3>Logga in</h3>
         <label>
           <p>E-post</p>
-          <input type='text' id='email' onChange={e => setEmail(e.target.value)} />
+          <input type='text' id='email' onChange={(e) => setEmail(e.target.value)} />
         </label>
         <label>
           <p>Lösenord</p>
-          <input type='password' id='password' onChange={e => setPassword(e.target.value)} />
+          <input type='password' id='password' onChange={(e) => setPassword(e.target.value)} />
         </label>
         <button type='submit'>Logga in</button>
       </form>
@@ -37,9 +37,9 @@ Login.propTypes = {
   setToken: PropTypes.func.isRequired
 }
 
-async function loginUser (credentials) {
+async function loginUser(credentials) {
   // Start upload
-  const url = 'https://rk-photo.herokuapp.com/auth/login'
+  const url = 'https://calm-cyan-panther-veil.cyclic.app/auth/login'
 
   const res = await axios.post(url, credentials)
 

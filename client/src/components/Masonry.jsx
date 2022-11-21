@@ -2,14 +2,12 @@ import { useState, useEffect } from 'react'
 import Image from './MasonryItem'
 import './Masonry.scss'
 
-export default function Masonry () {
+export default function Masonry() {
   const [images, setImages] = useState([])
 
   useEffect(() => {
-    const getImages = async albumId => {
-      const res = await fetch(
-        `https://rk-photo.herokuapp.com/albums/${albumId}`
-      )
+    const getImages = async (albumId) => {
+      const res = await fetch(`https://calm-cyan-panther-veil.cyclic.app/albums/${albumId}`)
       const data = await res.json()
 
       setImages(data.images)

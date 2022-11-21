@@ -5,7 +5,7 @@ import ImageUploader from './ImageUploader'
 import AlbumDetails from './AlbumDetails'
 const axios = progressfy(_axios)
 
-export default function UploadForm({ token }) {
+export default function UploadForm ({ token }) {
   const availableSteps = ['DETAILS', 'COVER', 'PHOTOS', 'FINISH']
   const [currStep, setCurrStep] = useState(0)
 
@@ -55,7 +55,7 @@ export default function UploadForm({ token }) {
   const saveAlbumOnline = async () => {
     // TODO: Fix bug, sends two time otherwise (first time without images)
 
-    const url = 'https://rk-photo.herokuapp.com/albums'
+    const url = 'https://calm-cyan-panther-veil.cyclic.app/albums'
 
     const data = {
       name: name,
@@ -79,7 +79,7 @@ export default function UploadForm({ token }) {
     const res = await axios.post(url, data, config)
   }
 
-  function stepForward() {
+  function stepForward () {
     if (currStep < availableSteps.length - 1) {
       setCurrStep(currStep + 1)
     } else {
@@ -87,7 +87,7 @@ export default function UploadForm({ token }) {
     }
   }
 
-  function stepBackward() {
+  function stepBackward () {
     if (currStep > 0) {
       setCurrStep(currStep - 1)
     } else {
@@ -95,7 +95,7 @@ export default function UploadForm({ token }) {
     }
   }
 
-  function resetToStart() {
+  function resetToStart () {
     setName('')
     setDescription('')
     setCategory('')
@@ -107,7 +107,7 @@ export default function UploadForm({ token }) {
     // TODO: Or redirect to albums page in DB
   }
 
-  function stepForward() {
+  function stepForward () {
     if (currStep < availableSteps.length - 1) {
       setCurrStep(currStep + 1)
     } else {
@@ -115,7 +115,7 @@ export default function UploadForm({ token }) {
     }
   }
 
-  function retrieveDetails(details) {
+  function retrieveDetails (details) {
     setName(details.name)
     setDescription(details.description)
     setCategory(details.category)
@@ -127,12 +127,12 @@ export default function UploadForm({ token }) {
     stepForward()
   }
 
-  function retrievedUploadedPics(imgUrls) {
+  function retrievedUploadedPics (imgUrls) {
     setPhotos(imgUrls)
     stepForward()
   }
 
-  function retrievedCoverImg(imgUrls) {
+  function retrievedCoverImg (imgUrls) {
     setCoverImg(imgUrls[0])
     stepForward()
   }
