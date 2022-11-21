@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/static/css/main.7114fbf7.css",
-    "main.js": "/static/js/main.e4d66da9.js",
+    "main.js": "/static/js/main.f779cbf7.js",
     "static/media/profile-photo.png": "/static/media/profile-photo.ab4738710ead28eecd72.png",
     "static/media/NeueHaasDisplayMedium.ttf": "/static/media/NeueHaasDisplayMedium.32921edb532f55cbfdc6.ttf",
     "static/media/NeueHaasDisplayRoman.ttf": "/static/media/NeueHaasDisplayRoman.a4c6f6d97398d8f9a96c.ttf",
-    "static/media/cog.svg": "/static/media/cog.d90c9bde7293593d7179c4982f9321d7.svg",
+    "static/media/cog.svg": "/static/media/cog.46048b3a6109da15d1332976391478a3.svg",
     "static/media/Renata Kaleta logo.svg": "/static/media/Renata Kaleta logo.1388a0c4b53f17b286793ca64f06d06e.svg",
     "index.html": "/index.html",
     "static/media/svg%3E": "/static/media/.9c09d9a2627e2eb9336d.svg",
-    "static/media/arrow-up.svg": "/static/media/arrow-up.2a4acbe09caa76f2a8d96306497a231b.svg",
+    "static/media/arrow-up.svg": "/static/media/arrow-up.c0f97857e248bdb78505cc7cef188fe4.svg",
     "static/media/HkDxOGAAAAAElFTkSuQmCC": "/static/media/.91f6ac4f3adddee7cb19.png",
     "static/media/javascript,__webpack_public_path__ = __webpack_base_uri__ = htmlWebpackPluginPublicPath;": "/static/media/.1feff74faaf0efc6a044",
     "main.7114fbf7.css.map": "/static/css/main.7114fbf7.css.map",
-    "main.e4d66da9.js.map": "/static/js/main.e4d66da9.js.map"
+    "main.f779cbf7.js.map": "/static/js/main.f779cbf7.js.map"
   },
   "entrypoints": [
     "static/css/main.7114fbf7.css",
-    "static/js/main.e4d66da9.js"
+    "static/js/main.f779cbf7.js"
   ]
 }
