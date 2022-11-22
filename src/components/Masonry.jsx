@@ -7,7 +7,7 @@ export default function Masonry () {
 
   useEffect(() => {
     const getImages = async (albumId) => {
-      const res = await fetch(`https://rk-photo.cyclic.app/albums/${albumId}`)
+      const res = await fetch(`https://api-rkphoto.cyclic.app/albums/${albumId}`)
       const data = await res.json()
 
       setImages(data.images)
