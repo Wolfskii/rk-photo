@@ -2,7 +2,7 @@ import AlbumsTable from './AlbumsTable'
 import StatBox from './StatBox'
 import { useState, useEffect } from 'react'
 
-export default function DPanel () {
+export default function DPanel() {
   const [albums, setAlbums] = useState([])
 
   useEffect(() => {
@@ -16,7 +16,7 @@ export default function DPanel () {
 
   // Fetch Albums
   const fetchAlbums = async () => {
-    const res = await fetch('https://calm-cyan-panther-veil.cyclic.app/albums')
+    const res = await fetch('https://rk-photo.cyclic.app/albums')
     const data = await res.json()
 
     return data.albums

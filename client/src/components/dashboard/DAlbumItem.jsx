@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { FaPen, FaTrash } from 'react-icons/fa'
 
-export default function DAlbumItem({ token }) {
+export default function DAlbumItem ({ token }) {
   const [editModeOn, setEditModeOn] = useState(false)
   const [deleteModeOn, setDeleteModeOn] = useState(false)
   const [album, setAlbum] = useState({
@@ -18,7 +18,7 @@ export default function DAlbumItem({ token }) {
 
   useEffect(() => {
     const getAlbum = async (albumId) => {
-      const res = await fetch(`https://calm-cyan-panther-veil.cyclic.app/albums/${albumId}`)
+      const res = await fetch(`https://rk-photo.cyclic.app/albums/${albumId}`)
       const data = await res.json()
 
       await setAlbum({
@@ -64,7 +64,7 @@ export default function DAlbumItem({ token }) {
   )
 }
 
-function UnEditableForm({ album }) {
+function UnEditableForm ({ album }) {
   return (
     <>
       <label htmlFor='album-name'>Album-namn:</label>
@@ -82,7 +82,7 @@ function UnEditableForm({ album }) {
   )
 }
 
-function EditableForm({ album, token }) {
+function EditableForm ({ album, token }) {
   return (
     <>
       <label htmlFor='album-name'>Album-namn:</label>
@@ -102,7 +102,7 @@ function EditableForm({ album, token }) {
   )
 }
 
-function DeleteButton({ album, token }) {
+function DeleteButton ({ album, token }) {
   return <input id='delete-btn' type='submit' value='Ta bort' onClick={handleDeleteBtn(token)} />
 }
 
@@ -127,7 +127,7 @@ const handleDeleteBtn = (token) => (event) => {
 }
 
 const updateAlbum = async (album, token) => {
-  const url = `https://calm-cyan-panther-veil.cyclic.app/albums/${album.id}`
+  const url = `https://rk-photo.cyclic.app/albums/${album.id}`
 
   const data = {
     name: album.name,
@@ -152,7 +152,7 @@ const updateAlbum = async (album, token) => {
 }
 
 const deleteAlbum = async (id, token) => {
-  const url = `https://calm-cyan-panther-veil.cyclic.app/albums/${id}`
+  const url = `https://rk-photo.cyclic.app/albums/${id}`
 
   const config = {
     headers: {

@@ -2,7 +2,7 @@ import axios from 'axios'
 import { useState } from 'react'
 import PropTypes from 'prop-types'
 
-export default function Login({ setToken }) {
+export default function Login ({ setToken }) {
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
 
@@ -37,9 +37,9 @@ Login.propTypes = {
   setToken: PropTypes.func.isRequired
 }
 
-async function loginUser(credentials) {
+async function loginUser (credentials) {
   // Start upload
-  const url = 'https://calm-cyan-panther-veil.cyclic.app/auth/login'
+  const url = 'https://rk-photo.cyclic.app/auth/login'
 
   const res = await axios.post(url, credentials)
 
