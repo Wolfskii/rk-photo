@@ -3,7 +3,7 @@ import './Albums.scss'
 import Card from './AlbumCard'
 import Spinner from './Spinner'
 
-export default function Albums () {
+export default function Albums() {
   const [isLoaded, setIsLoaded] = useState(false)
   const [albums, setAlbums] = useState([])
 
@@ -21,6 +21,8 @@ export default function Albums () {
   const fetchAlbums = async () => {
     const res = await fetch('https://rk-photo.cyclic.app/albums')
     const data = await res.json()
+
+    console.log('Anropat: https://rk-photo.cyclic.app/albums')
 
     return data.albums
   }
