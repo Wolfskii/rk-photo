@@ -3,7 +3,7 @@ import './Albums.scss'
 import Card from './AlbumCard'
 import Spinner from './Spinner'
 
-export default function Albums() {
+export default function Albums () {
   const [isLoaded, setIsLoaded] = useState(false)
   const [albums, setAlbums] = useState([])
 
