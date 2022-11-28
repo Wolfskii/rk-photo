@@ -3,6 +3,7 @@ import progressfy from 'axios-progressfy'
 import { useState, useEffect } from 'react' // Adding progressify to axios
 import ImageUploader from './ImageUploader'
 import AlbumDetails from './AlbumDetails'
+import ImagesPaster from './ImagesPaster'
 const axios = progressfy(_axios)
 
 export default function UploadForm ({ token }) {
@@ -17,40 +18,7 @@ export default function UploadForm ({ token }) {
   const [coverImg, setCoverImg] = useState('')
   const [photos, setPhotos] = useState([])
 
-  useEffect(() => {
-    /*     const submitBtn = document.getElementById('submit-album-btn') */
-    /*     // Saving of album
-    submitBtn.addEventListener(
-      'click',
-      async (e) => {
-        const album = await getAlbumFormData()
-        await saveAlbumOnline(album)
-      },
-      false
-    ) */
-  }, [])
-
-  /*   const getAlbumFormData = async () => {
-    const album = {
-      name: document.getElementById('album-name').value,
-      description: document.getElementById('album-desc').value,
-      category: document.getElementById('album-cat').value,
-      images: []
-    }
-
-    // Adding images to the array
-    images.forEach((image) => {
-      album.images.push(image)
-    })
-
-    const datetime = document.getElementById('album-date').value
-
-    if (datetime !== '') {
-      album.datetime = datetime
-    }
-
-    return album
-  } */
+  useEffect(() => {}, [])
 
   const saveAlbumOnline = async () => {
     // TODO: Fix bug, sends two time otherwise (first time without images)
@@ -76,7 +44,7 @@ export default function UploadForm ({ token }) {
       }
     }
 
-    const res = await axios.post(url, data, config)
+    await axios.post(url, data, config)
   }
 
   function stepForward () {
@@ -105,14 +73,6 @@ export default function UploadForm ({ token }) {
 
     setCurrStep(0)
     // TODO: Or redirect to albums page in DB
-  }
-
-  function stepForward () {
-    if (currStep < availableSteps.length - 1) {
-      setCurrStep(currStep + 1)
-    } else {
-      console.log('Cannot go forward, is already last step!')
-    }
   }
 
   function retrieveDetails (details) {
@@ -155,7 +115,7 @@ export default function UploadForm ({ token }) {
     return (
       <>
         <h3>Album-foton</h3>
-        <ImageUploader imgurClientID='ab4e03fd5059830' onUpload={retrievedUploadedPics} maxPhotos='1000' stepForward={stepForward} stepBackward={stepBackward} />
+        <ImagesPaster onUpload={retrievedUploadedPics} stepForward={stepForward} stepBackward={stepBackward} />
       </>
     )
   } else if (availableSteps[currStep] === 'FINISH') {
