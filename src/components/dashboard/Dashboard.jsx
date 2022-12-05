@@ -7,17 +7,22 @@ import UploadForm from './UploadForm'
 import DUser from './DUser'
 import DAlbumItem from './DAlbumItem'
 
-export default function Dashboard () {
+export default function Dashboard() {
   // Use as inspiration: https://www.cssscript.com/demo/dashboard-tailwind-admin/
   const { token, setToken } = useToken()
 
-  if (!token) {
+  /*   if (!token) {
+    return <Login setToken={setToken} />
+  } */
+
+  // TODO: Fix above and use instead from custom hook
+  if (!window.localStorage.getItem('token')) {
     return <Login setToken={setToken} />
   }
+  // TODO: Add checking if token is valid and not fake
 
   return (
     <div id='dashboard'>
-
       {/* The sidebar */}
       <DSidebar />
 
@@ -34,7 +39,6 @@ export default function Dashboard () {
       <div>
         <button id='logout-btn'>Logga ut</button>
       </div>
-
     </div>
   )
 }

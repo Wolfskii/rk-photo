@@ -9,7 +9,7 @@ export default function useToken () {
 
   const [token, setToken] = useState(getToken())
 
-  const saveToken = userToken => {
+  const saveToken = (userToken) => {
     window.localStorage.setItem('token', JSON.stringify(userToken))
     setToken(userToken)
   }
