@@ -6,7 +6,7 @@ import AlbumDetails from './AlbumDetails'
 import ImagesPaster from './ImagesPaster'
 const axios = progressfy(_axios)
 
-export default function UploadForm ({ token }) {
+export default function UploadForm({ token }) {
   const availableSteps = ['DETAILS', 'COVER', 'PHOTOS', 'FINISH']
   const [currStep, setCurrStep] = useState(0)
 
@@ -47,7 +47,7 @@ export default function UploadForm ({ token }) {
     await axios.post(url, data, config)
   }
 
-  function stepForward () {
+  function stepForward() {
     if (currStep < availableSteps.length - 1) {
       setCurrStep(currStep + 1)
     } else {
@@ -55,7 +55,7 @@ export default function UploadForm ({ token }) {
     }
   }
 
-  function stepBackward () {
+  function stepBackward() {
     if (currStep > 0) {
       setCurrStep(currStep - 1)
     } else {
@@ -63,7 +63,7 @@ export default function UploadForm ({ token }) {
     }
   }
 
-  function resetToStart () {
+  function resetToStart() {
     setName('')
     setDescription('')
     setCategory('')
@@ -75,7 +75,7 @@ export default function UploadForm ({ token }) {
     // TODO: Or redirect to albums page in DB
   }
 
-  function retrieveDetails (details) {
+  function retrieveDetails(details) {
     setName(details.name)
     setDescription(details.description)
     setCategory(details.category)
@@ -87,12 +87,12 @@ export default function UploadForm ({ token }) {
     stepForward()
   }
 
-  function retrievedUploadedPics (imgUrls) {
+  function retrievedUploadedPics(imgUrls) {
     setPhotos(imgUrls)
     stepForward()
   }
 
-  function retrievedCoverImg (imgUrls) {
+  function retrievedCoverImg(imgUrls) {
     setCoverImg(imgUrls[0])
     stepForward()
   }

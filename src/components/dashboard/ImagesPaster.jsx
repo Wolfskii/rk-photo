@@ -14,6 +14,8 @@ export default function ImagesPaster ({ onUpload }) {
           uploadedImgUrls.push(imgUrl)
         }
 
+        document.querySelector('#album-image-links').value = ''
+
         onUpload(uploadedImgUrls)
       })
     } else {
@@ -25,7 +27,7 @@ export default function ImagesPaster ({ onUpload }) {
     <form className='img-links-input'>
       <label htmlFor='album-image-links'>Länkar från Lensdump:</label>
       <textarea id='album-image-links' name='album-image-links' rows='10' cols='30' />
-      <input type='submit' id='submit-album-btn' onClick={getImageLinks} value='Ladda upp' />
+      <input type='button' id='submit-album-btn' onClick={getImageLinks} value='Ladda upp' />
     </form>
   )
 }
