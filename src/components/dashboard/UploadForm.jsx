@@ -108,7 +108,8 @@ export default function UploadForm ({ token }) {
     return (
       <>
         <h3>Album-omslag</h3>
-        <ImageUploader imgurClientID='ab4e03fd5059830' onUpload={retrievedCoverImg} maxPhotos='1' stepForward={stepForward} stepBackward={stepBackward} />
+        {/* <ImageUploader imgurClientID='ab4e03fd5059830' onUpload={retrievedCoverImg} maxPhotos='1' stepForward={stepForward} stepBackward={stepBackward} /> */}
+        <ImagesPaster onUpload={retrievedCoverImg} stepForward={stepForward} stepBackward={stepBackward} />
       </>
     )
   } else if (availableSteps[currStep] === 'PHOTOS') {
