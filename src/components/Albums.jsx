@@ -14,6 +14,8 @@ export default function Albums () {
       setIsLoaded(true)
     }
 
+    window.localStorage.clear() // TODO: Fix better solution to check if token is not old
+
     getAlbums()
   }, [])
 
