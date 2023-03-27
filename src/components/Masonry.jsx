@@ -56,7 +56,7 @@ const getCurrAlbum = () => {
 const preloadImages = (imageSrcs) => {
   const promises = imageSrcs.map((src) => {
     return new Promise((resolve, reject) => {
-      const img = new Image()
+      const img = new window.Image()
       img.onload = resolve
       img.onerror = reject
       img.src = src
