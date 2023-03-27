@@ -13,6 +13,7 @@ export default function Albums() {
   const [albums, setAlbums] = useState([])
   const [totalItems, setTotalItems] = useState(0)
   const [currentPage, setCurrentPage] = useState(1)
+  const [isFetching, setIsFetching] = useState(false)
   const itemsPerPage = 8
 
   /**
@@ -20,15 +21,18 @@ export default function Albums() {
    * @callback fetchAlbums
    * @returns {Promise<Array>} - A promise that resolves to an array of albums.
    */
-  const fetchAlbums = useCallback(async () => {
-    const res = await fetch(`https://api-rkphoto.cyclic.app/albums?page=${currentPage}&itemsPerPage=${itemsPerPage}`)
-    const data = await res.json()
+  const fetchAlbums = useCallback(
+    async (page) => {
+      const res = await fetch(`https://api-rkphoto.cyclic.app/albums?page=${page}&itemsPerPage=${itemsPerPage}`)
+      const data = await res.json()
 
-    const totalItems = data.pagination?.totalItems || 0
-    const albums = data.albums || []
+      const totalItems = data.pagination?.totalItems || 0
+      const albums = data.albums || []
 
-    return { albums, totalItems }
-  }, [currentPage, itemsPerPage])
+      return { albums, totalItems }
+    },
+    [itemsPerPage]
+  )
 
   // Fetch the albums and set the state on component mount
   useEffect(() => {
@@ -38,21 +42,30 @@ export default function Albums() {
      * @function getAlbums
      */
     const getAlbums = async () => {
-      const { albums, totalItems } = await fetchAlbums()
+      setIsFetching(true)
+      const { albums, totalItems } = await fetchAlbums(currentPage)
       setAlbums(albums)
       setTotalItems(totalItems)
       setIsLoaded(true)
+      setIsFetching(false)
     }
 
     getAlbums()
-  }, [fetchAlbums, currentPage, itemsPerPage])
+  }, [fetchAlbums, currentPage])
 
-  const handlePageChange = (newPage) => {
+  const handlePageChange = async (newPage) => {
+    setIsLoaded(false)
+    setIsFetching(true)
     setCurrentPage(newPage)
+    const { albums, totalItems } = await fetchAlbums(newPage)
+    setAlbums(albums)
+    setTotalItems(totalItems)
+    setIsLoaded(true)
+    setIsFetching(false)
   }
 
   // If the albums are not loaded yet, display the Spinner component
-  if (!isLoaded) {
+  if (!isLoaded || albums.length === 0) {
     return <Spinner />
   } else {
     // Render the list of album cards once the data is loaded
@@ -60,10 +73,10 @@ export default function Albums() {
       <>
         <div className='albums'>
           {albums.map((album, index) => (
-            <Card key={index} album={album} />
+            <Card key={index} album={album} isFetching={isFetching} />
           ))}
         </div>
-        <Pagination currentPage={currentPage} itemsPerPage={itemsPerPage} totalItems={totalItems} onPageChange={handlePageChange} />
+        <Pagination currentPage={currentPage} itemsPerPage={itemsPerPage} totalItems={totalItems} onPageChange={handlePageChange} disabled={isFetching} />
       </>
     )
   }
