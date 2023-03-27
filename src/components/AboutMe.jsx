@@ -1,6 +1,10 @@
 import ProfilePhoto from '../assets/images/profile-photo.png'
 import './AboutMe.scss'
 
+/**
+ * AboutMe component displays information about Renata Kaleta.
+ * @returns {JSX.Element} - Rendered AboutMe component.
+ */
 export default function AboutMe() {
   return (
     <div id='about-me'>
@@ -12,17 +16,13 @@ export default function AboutMe() {
         <div className='container'>
           <div className='sub-container'>
             <div>
-              <p>Kul att just du hittat hit! Hoppas du gillar mina bilder. Vad kan jag berätta om mig själv? Jag har över tio år fotograferat som en extra hobby och blivit rätt vass på det, om jag får säga det själv. Jag tyckte det var kul efter att ha testat att fotografera på några danstävlingar i början och fastnade snabbt, vilket ledde till fördjupat lärande och mängder med inköp av kameror, linser och stativ.</p>
+              <p>Foton är väldigt intressanta. De kan berätta en historia, beröra, lugna själen och så mycket mer. Foton kan ha olika betydelse från person till person och ingens tolkning eller känslor är någonsin fel. Det är helt enkelt så mycket mer än bara en bild. För mig kan ett foto återblicka till ett kärt minne, med familj, vänner eller en speciell plats som ligger en nära om hjärtat.</p>
             </div>
           </div>
           <div className='sub-container'>
             <div>
               <h4>Fotografier</h4>
-              <p>Foton är väldigt intressanta. De kan berätta en historia, beröra, lugna själen och så mycket mer. Foton kan ha olika betydelse från person till person och ingens tolkning eller känslor är någonsin fel. Det är helt enkelt så mycket mer än bara en bild. För mig kan ett foto återblicka till ett kärt minne, med familj, vänner eller en speciell plats som ligger en nära om hjärtat.</p>
-            </div>
-            <div>
-              <h4>Evenemang</h4>
-              <p>Jag är numera rätt van och erfaren när det kommer till evenemange, stora som små, inomhus och utomhus i olika ljusförhållanden. Intresserad? Gå till sidan "Kontakta mig" för att ta kontakt!</p>
+              <p>Fotografier besitter en fascinerande kraft. De kan förmedla historier, väcka känslor, bringa ro till sinnet och mycket mer. Bilders innebörd kan variera för olika individer, och ingen tolkning eller känsla är felaktig. Fotografier utgör helt enkelt mer än enbart visuella avbildningar. Personligen kan ett foto för mig återspegla ett älskat minne, oavsett om det involverar familj, vänner eller en speciell plats som ligger mig varmt om hjärtat.</p>
             </div>
           </div>
         </div>
