@@ -5,21 +5,16 @@
   margin: 2rem 0;
 
   button {
-    background-color: #fff;
     border: 1px solid #ccc;
     padding: 0.5rem 1rem;
     margin: 0 1rem;
     cursor: pointer;
     transition: background-color 0.3s;
 
-    &:hover {
-      background-color: #f0f0f0;
-    }
-
     &:disabled {
+      color: #181818;
       background-color: #fff;
       cursor: not-allowed;
-      color: #ccc;
     }
   }
 }

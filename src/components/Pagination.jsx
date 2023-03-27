@@ -18,13 +18,13 @@ export default function Pagination({ currentPage, itemsPerPage, totalItems, onPa
   return (
     <div className='pagination'>
       <button onClick={handlePrevious} disabled={currentPage === 1}>
-        Previous
+        Föregående
       </button>
       <span>
         {currentPage} / {totalPages}
       </span>
       <button onClick={handleNext} disabled={currentPage === totalPages}>
-        Next
+        Nästa
       </button>
     </div>
   )
