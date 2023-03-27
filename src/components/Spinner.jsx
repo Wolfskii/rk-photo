@@ -1,9 +1,12 @@
 import './Spinner.scss'
 
-export default function Spinner () {
+export default function Spinner() {
   return (
-    <div className='spinner-container'>
-      <div className='spinner center' />
+    <div className='camera-spinner'>
+      <div id='camera'>
+        <div className='lens' />
+        <div className='flash' />
+      </div>
     </div>
   )
 }
